@@ -1,0 +1,128 @@
+<style id="style">
+    div#content {
+        width: 793px;
+        height: 1150px;
+        padding: 30px 40px;
+        margin: auto;
+    }
+
+    div#content table {
+        text-align: center;
+        width: 600px;
+        border-collapse: collapse;
+        border: 1px solid black;
+        margin: auto;
+    }
+
+    div#content table tr td:first-child, div#content table tr td:nth-child(3) {
+        width: 115px;
+        height: 50px;
+    }
+
+    div#content p.title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    div#content p.unit {
+        text-align: right;
+        padding-right: 60px;
+    }
+
+    div#content p.tableFooter > span:nth-child(1) {
+        float: left;
+        margin-left: 40px
+    }
+
+    div#content p.tableFooter > span:nth-child(2) {
+        float: right;
+        margin-right: 40px
+    }
+
+    div#content p.tableFooter {
+        padding: 0 20px;
+    }
+
+    div#content tr {
+        height: 60px;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="content">
+    <p class="title">杭州市区土地年收益申报表</p>
+    <p class="unit">单位: M²</p>
+    <table border="1px solid black">
+        <tr>
+            <td><label>申报人</label></td>
+            <td colspan="3"><span class="editable" contenteditable="true">{{item.dwmc}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地坐落</label></td>
+            <td colspan="3">
+                <span class="editable" contenteditable="true">{{item.xzqh.cq}}</span><span class="editable" contenteditable="true">{{item.jdxx.jdmc}}</span><span class="editable" contenteditable="true">{{item.mph}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td><label>联系人</label></td>
+            <td><span class="editable" contenteditable="true">{{item.lxr}}</span></td>
+            <td><label>联系电话</label></td>
+            <td><span class="editable" contenteditable="true">{{item.lxdh}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地证号</label></td>
+            <td><span class="editable" contenteditable="true">{{item.tdzh}}</span></td>
+            <td><label>使用权类型</label></td>
+            <td><span class="editable" contenteditable="true">{{item.syqlx.syqlx}}</span></td>
+        </tr>
+        <tr>
+            <td><label>批准用途</label></td>
+            <td><span class="editable" contenteditable="true">{{item.pzyt.pzyt}}</span></td>
+            <td><label>现状用途</label></td>
+            <td><span class="editable" contenteditable="true">{{item.xzyt.pzyt}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地面积</label></td>
+            <td><span class="editable" contenteditable="true">{{item.tdzmj}}</span></td>
+            <td><label>建筑面积</label></td>
+            <td><span class="editable" contenteditable="true">{{item.jzzmj}}</span></td>
+        </tr>
+        <tr>
+            <td><label>从事经营性活动土地面积</label></td>
+            <td><span class="editable" contenteditable="true">{{item.jzjzmj}}</span></td>
+            <td><label>从事经营性活动建筑面积</label></td>
+            <td><span class="editable" contenteditable="true">{{item.jzjzmj}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地年收益申报年期</label></td>
+            <td colspan="3">自<span class="editable" contenteditable="true">{{declareModule.startTime}}</span>至<span class="editable" contenteditable="true">{{declareModule.endTime}}</span>止</td>
+        </tr>
+        <tr>
+            <td><label>需提交的资料</label></td>
+            <td colspan="3" style="text-align: left;padding-left: 15px">
+                <p>□ 土地使用证等土地权属资料；</p>
+                <p>□ 房屋所有权证；</p>
+                <p>□ 营业执照、机构代码证或身份证；</p>
+                <p>□ 租赁协议书；</p>
+                <p>□ 市商品市场建设领导小组或规划批准文件；</p>
+                <p>□ 委托办理的，提交委托书；</p>
+                <p>□ 其他需提交的资料；</p>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>备注</label></td>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+    <p class="tableFooter"><span>申报人(盖章)</span><span>2018年3月7日</span></p>
+</div>
+<p class="printButton">
+    <button ng-click="print()" class="btn btn-darkBlue">打印</button>
+</p>

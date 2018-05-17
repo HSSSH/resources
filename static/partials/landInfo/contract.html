@@ -1,0 +1,97 @@
+<style id="style">
+    label{
+        font-weight: bold;
+    }
+    .underline{
+        text-decoration: underline
+    }
+    p{
+        line-height: 1.5;
+        margin: 0;
+    }
+    div#content {
+        width: 100%;
+        height: 100%;
+        box-sizing:border-box;
+        Font-family: FangSong,仿宋;
+        font-size: 15px;
+        padding: 30px 50px;
+    }
+    span.underline {
+        text-decoration: underline;
+    }
+    p.printButton {
+        text-align: right;
+        padding-right: 30px;
+        position: relative;
+        top: -50px;
+    }
+    span.editable {
+        min-width: 25px;
+        text-align: right;
+    }
+    span.dateInputPart{
+        display: inline-block;
+        width: 160px;
+        height: 20px;
+        border-bottom: solid 1px #000000;
+        position: relative;
+        top:2px;
+    }
+    span.dateInputPart input{
+        border: none;
+        display: inline-block;
+        height: 16px;
+        text-align: center;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="content">
+    <p style="text-align: center"><label style="font-size: 20px">杭州市区国有土地年收益合同书</label></p>
+    <br/>
+    <p style="text-align: right" contenteditable="true">{{data.htbh}}</p>
+    <br/>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第一条  本合同当事人：</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;甲方：杭州市国土资源局<span contenteditable="true" class="editable underline">{{data.tdxx.xzqh.cq}}</span>分局</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;乙方： <span class="editable underline" contenteditable="true">{{data.tdxx.dwmc}}</span></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;根据《中华人民共和国土地管理法》、《中华人民共和国城市房地产管理法》、《浙江省城乡规划条例》和《杭州市区土地年收益征收管理办法》等规定，双方就国有土地缴纳土地年收益事宜，订立本合同。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第二条  乙方位于<span class="editable underline" contenteditable="true">{{data.tdxx.xzqh.cq}}{{data.tdxx.jdxx.jdmc}}{{data.tdxx.mph}}</span>
+        地块，土地等级<span class="editable underline" contenteditable="true">{{data.tdxx.tddj.tddj}}</span>，土地面积<span  class="editable underline" contenteditable="true">{{data.tdxx.tdzmj}}</span>平方米，建筑面积<span class="editable underline" contenteditable="true">{{data.tdxx.jzzmj}}</span>平方米,
+        批准土地用途为<span class="editable underline" contenteditable="true">{{data.tdxx.pzyt.pzyt}}</span>,其中<span  class="editable underline" contenteditable="true">{{data.tdxx.jzmj}}</span>平方米土地（房屋）用于出租或从事商业等经营性活动(临时改变用于
+        <span  class="editable underline" contenteditable="true">{{data.tdxx.xzyt.pzyt}}</span>)。
+    </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第三条  本合同项下乙方缴纳的土地年收益单价为每平方米(<span class="editable underline" contenteditable="true">{{data.tdxx.nsydj}}</span>元)人民币<span class="editable underline" contenteditable="true">{{data.tdxx.chineseNum1}}</span>
+        每年应缴年收益总额人民币<span class="editable underline" contenteditable="true">{{data.tdxx.nyjje}}</span>元人民币<span class="editable underline" contenteditable="true">{{data.tdxx.chineseNum2}}</span>。
+        乙方缴纳年收益的期限自<span class="editable underline" contenteditable="true">{{data.htksrq | dateFormateChe}} 至 {{data.htjsrq | dateFormateChe}}</span>止，合计应缴总额为<span class="editable underline" contenteditable="true">{{data.hjyjje}}</span>元人民币
+        <span class="editable underline" contenteditable="true">{{data.tdxx.chineseNum3}}</span>。
+    </p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第四条  乙方须在本合同生效之日起15日内凭本合同自行向杭州市地税局直属分局一次性缴纳上述土地年收益。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第五条  本合同项下租金标准在合同期内不作调整，期满后按届时规定标准相应调整。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第六条  本合同期限届满，乙方如需继续从事经营活动的，须在期满30日前向甲方提出续期申请，重新按规定办理相关手续。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第七条  乙方应按本合同规定的期限缴纳土地年收益，如超过本合同规定的缴款期限，除补缴应付款项外，按照土地管理相关规定进行处理。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第八条  在本合同存续期内，因国家建设或规划调整用地时，乙方应无条件服从，本合同自行终止。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第九条  本合同按土地（房屋）使用现状征收年收益，如与原批准用途不一致的，不得作为批准改变房屋产权或土地登记用途及拆迁补偿安置的依据，其房屋产权或土地登记用途及补偿标准仍按原批准用途确定。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第十条  因执行本合同发生争议，由争议双方协商解决，协商不成，双方可依法向人民法院起诉解决。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第十一条  本合同由双方法定代表人或委托代理人签字并盖章后生效。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第十二条  本合同一式三份，甲、乙双方和杭州市地税局直属分局各执一份。</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;第十三条  本合同于
+        <span class="dateInputPart">
+            <input ng-model="data.htrqYear" style="width: 50px;">年
+            <input ng-model="data.htrqMonth" style="width: 25px;">月
+            <input ng-model="data.htrqDay" style="width: 25px;">日
+        </span>
+        &nbsp;在杭州市签订。
+    </p>
+    <br/>
+    <div style="width: calc(50% - 5px);display: inline-block;vertical-align: top">
+        <p style="height: 50px">甲方:	<span contenteditable="true" class="editable underline">{{data.tdxx.xzqh.cq}}</span>分局(章)</p>
+        <p>法定代表人(委托代理人)</p>
+        <p>(签字):</p>
+    </div>
+    <div style="width: calc(50% - 5px);display: inline-block;vertical-align: top">
+        <p style="height: 50px">乙方:<span contenteditable="true" class="editable underline">{{data.tdxx.dwmc}}</span>(章)</p>
+        <p>法定代表人(委托代理人)</p>
+        <p>(签字):</p>
+    </div>
+</div>
+<p class="printButton"><button ng-click="print()" class="btn btn-darkBlue">打印</button></p>

@@ -1,0 +1,64 @@
+<style id="style">
+    label{
+        font-weight: bold;
+    }
+    .otherFont{
+        Font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,"Microsoft YaHei";
+    }
+    .underline{
+        text-decoration: underline
+    }
+    p{
+        line-height: 1.5;
+        margin: 0;
+    }
+    div#pressMoney {
+        width: 100%;
+        height: 100%;
+        box-sizing:border-box;
+        Font-family:  SimSun, “宋体”, serifl;
+        font-size: 20px;
+        padding: 130px 115px 113px
+    }
+    span.underline {
+        text-decoration: underline;
+    }
+    p.printButton {
+        text-align: right;
+        padding-right: 30px;
+        position: relative;
+        top: -50px;
+    }
+    span.editable {
+        min-width: 25px;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="pressMoney" style="text-align: center">
+    <p><label class="otherFont" style="font-size: 26px;">续办通知</label></p>
+    <br/>
+    <p style="text-align: left;" class="underline otherFont"><span contenteditable="true" class="editable underline">{{data.tdxx.dwmc}}:</span></p>
+    <p style="text-align: left;line-height: 45px">
+        &nbsp;&nbsp;你（单位）位于
+        <span class="underline otherFont editable" contenteditable="true">{{data.tdxx.xzqh.cq}}{{data.tdxx.jdxx.jdmc}}{{data.tdxx.mph}}</span>
+        地块的《杭州市区土地年收益合同书》（
+        <span class="underline otherFont editable" contenteditable="true">{{data.htbh}}</span>
+        ）于
+        <span class="underline otherFont editable" contenteditable="true">{{data.htjsrq|dateFormateChe}}</span>
+        届满，请你（单位）自收到本通知后15日内持土地使用证、房屋所有权证等资料来杭州市国土资源局
+        <span class="underline otherFont editable" contenteditable="true">{{data.tdxx.xzqh.cq}}</span>
+        分局办理土地年收益续期手续。逾期未申报的，将依据土地管理法律法规追究相应法律责任。
+    </p>
+    <p style="text-align: left">&nbsp;&nbsp;附:《杭州市区土地年收益申报表》</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p style="text-align: right">杭州市国土资源局<span class="editable" contenteditable="true">{{data.tdxx.xzqh.cq}}</span>分局</p>
+    <p style="text-align: right"><span class="editable" contenteditable="true">{{currentTime | date:'yyyy年MM月dd日'}}</span></p>
+    <br/>
+    <p style="text-align: left;">联系地址：</p>
+    <p style="text-align: left;">联系电话：</p>
+</div>
+<p class="printButton"><button ng-click="print()" class="btn btn-darkBlue">打印</button></p>

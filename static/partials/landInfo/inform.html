@@ -1,0 +1,34 @@
+<style id="style">
+    div#content {
+        width: 793px;
+        height: 1150px;
+        padding: 120px 100px;
+        box-sizing: border-box;
+    }
+    p.title {
+        font-size: 28px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="content">
+    <p class="title">通&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;知</p>
+    <p style="text-align: left;" class="underline otherFont bold"><span contenteditable="true" style="text-decoration: underline">{{item.dwmc}}：</span></p>
+    <p style="text-align: left;line-height: 45px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照《杭州市区土地年收益征收管理办法》有关规定，你（单位）位于
+    <span class="underline otherFont bold editable" contenteditable="true" style="text-decoration: underline">{{item.xzqh.cq}}{{item.jdxx.jdmc}}{{item.mph}}</span>
+    地块应按规定缴纳土地年收益，请你（单位）自受到本通知后15日内，持土地使用证、房屋所有权证等相关资料来杭州市国土资源局
+    <span class="otherFont bold editable" contenteditable="true">{{item.xzqh.cq}}</span>
+    分局办理土地年收益申报手续。逾期未申报的，将依据土地管理法律法规追究相应法律责任。
+    </p>
+    <p style="text-align: left; margin-bottom: 130px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;附:《杭州市区土地年收益申报表》</p>
+    <p style="text-align: right">杭州市国土资源局<span class="otherFont bold editable" contenteditable="true">{{item.xzqh.cq}}</span>分局</p>
+    <p style="text-align: right; margin-bottom: 60px"><span>{{currentDate | date: 'yyyy年MM月dd日'}}</span></p>
+    <p style="text-align: left;">联系地址：</p>
+    <p style="text-align: left;">联系电话：</p>
+</div>
+<p class="printButton">
+    <button ng-click="print('inform')" class="btn btn-darkBlue">打印</button>
+</p>

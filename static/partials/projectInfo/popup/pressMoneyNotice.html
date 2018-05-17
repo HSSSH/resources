@@ -1,0 +1,59 @@
+<style id="style">
+    label{
+        font-weight: bold;
+    }
+    .otherFont{
+        Font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,"Microsoft YaHei";
+    }
+    .underline{
+        text-decoration: underline
+    }
+    p{
+        line-height: 1.5;
+        margin: 0;
+    }
+    div#pressMoney {
+        width: 100%;
+        height: 100%;
+        box-sizing:border-box;
+        Font-family:  SimSun, “宋体”, serifl;
+        font-size: 20px;
+        padding: 130px 115px 113px
+    }
+    span.underline {
+        text-decoration: underline;
+    }
+    p.printButton {
+        text-align: right;
+        padding-right: 30px;
+        position: relative;
+        top: -50px;
+    }
+    span{
+        display: inline-block;
+    }
+    span.editable {
+        min-width: 50px;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="pressMoney" style="text-align: center">
+    <p><label style="font-size: 26px;">土地年收益催款通知</label></p>
+    <br/>
+    <p style="text-align: left;" class="underline otherFont"><span contenteditable="true" class="editable underline">{{data.tdxx.dwmc}}:</span></p>
+    <p style="text-align: left;line-height: 45px">
+        &nbsp;&nbsp;根据
+        <span  contenteditable="true" class="editable underline">{{data.htbh}}</span>
+        《杭州市区土地年收益合同书》约定,你单位应于<span contenteditable="true" class="editable underline">{{data.htjsrq|dateFormateChe}}</span>
+        前缴纳<span contenteditable="true" class="editable underline">{{data.tdxx.xzqh.cq}}{{data.tdxx.jdxx.jdmc}}{{data.tdxx.mph}}</span>地块的土地年收益
+        <span class="underline" contenteditable="true">{{data.hjyjje}}</span>
+        元人民币。请接通知后15日内随带《杭州市区土地年收益合同书》到杭州市地税局直属分局办理土地年收益缴款手续。
+    </p>
+    <p style="text-align: left">&nbsp;&nbsp;缴款地址：庆春路155号中财发展大厦</p>
+    <p style="text-align: left">&nbsp;&nbsp;联系电话：</p>
+    <br/>
+    <br/>
+    <p style="text-align: right">杭州市国土资源局<span contenteditable="true">{{data.tdxx.xzqh.cq}}</span>分局</p>
+    <p style="text-align: right"><span contenteditable="true">{{currentTime | date:'yyyy年MM月dd日'}}</span></p>
+</div>
+<p class="printButton"><button ng-click="print()" class="btn btn-darkBlue">打印</button></p>

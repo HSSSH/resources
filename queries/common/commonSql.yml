@@ -1,0 +1,85 @@
+---
+  grammer: SQL
+  queries:
+    - name: pzytInfo
+      resultType: Map
+      statement: 
+        "
+        select
+          *
+        from
+           pzyt
+        "
+    - name: cqInfo
+      resultType: Map
+      statement:
+        "select
+           *
+         from
+           xzqh
+          "
+    - name: xyqlxInfo
+      resultType: Map
+      statement:
+        "select
+           *
+         from
+           syqlx
+          "
+    - name: tddjInfo
+      resultType: Map
+      statement:
+        "select
+           *
+         from
+          tddj
+        "
+    - name: zslxInfo
+      resultType: Map
+      statement:
+        "select
+          *
+         from
+          zslx
+        "
+
+    - name: jkbsInfo
+      resultType: Map
+      statement:
+        "select
+            *
+         from
+            jkbs
+        "
+    - name: htdqqkInfo
+      resultType: Map
+      statement:
+       "select
+          *
+        from
+         htdqqk
+       "
+    - name: fjlxInfo
+      resultType: Map
+      statement:
+        "select
+          *
+         from
+          fjlx
+        "
+    - name: jdxxInfo
+      resultType: Map
+      statement:
+        "select
+           a.objectid,a.jdmc,b.cq
+         from
+          Jdxx a
+         left join
+           xzqh b
+          on a.cq = b.objectid
+         where
+           1=1
+         #if($getcq)
+          and b.objectid = :getcq
+         #end
+          "

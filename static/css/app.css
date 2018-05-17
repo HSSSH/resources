@@ -1,0 +1,666 @@
+@charset "UTF-8";
+button.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: none; }
+
+button.btn-header {
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 2px 10px;
+  background: none; }
+
+button.btn-header:hover {
+  background-color: #5c9afd;
+  border: 1px solid #5c9afd; }
+
+button.btn-login {
+  width: 100%;
+  height: 40px;
+  background-color: #5c9afd;
+  display: block;
+  color: #ffffff;
+  font-size: 16px;
+  margin-top: 70px;
+  margin-bottom: 10px; }
+
+button.btn-nav {
+  line-height: 20px;
+  border-radius: 20px;
+  background: none; }
+
+button.btn-nav.parentActive {
+  color: #ffffff;
+  background-color: #5c9afd; }
+
+button.btn-blue {
+  color: #ffffff;
+  background-color: #5c9afd; }
+
+button.btn-darkBlue {
+  color: #ffffff;
+  background-color: #18335e; }
+
+button.btn-darkBlue:hover {
+  background-color: #5c9afd; }
+
+html {
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%;
+  min-width: 1366px;
+  min-height: 768px;
+  margin: 0;
+  position: relative;
+  background-color: #e3e3e3; }
+
+div.header {
+  width: 100%;
+  height: 80px;
+  padding: 15px 15px;
+  background-color: #18335e;
+  box-sizing: border-box; }
+  div.header div.headerLeft, div.header div.headerRight {
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    line-height: 50px; }
+  div.header div.headerLeft {
+    padding-left: 70px;
+    color: #ffffff;
+    font-size: 16px; }
+  div.header div.headerRight {
+    text-align: right; }
+    div.header div.headerRight button {
+      display: inline-block;
+      margin-right: 30px; }
+
+div.nav {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  background-color: #ffffff; }
+  div.nav button {
+    margin: 10px; }
+  div.nav .notice-part {
+    padding-right: 20px;
+    float: right;
+    height: 100%; }
+    div.nav .notice-part div {
+      height: 50%;
+      line-height: normal;
+      text-align: left; }
+      div.nav .notice-part div button {
+        background: red;
+        color: #ffffff;
+        border-radius: 3px;
+        min-width: 150px;
+        height: 24px;
+        border: none;
+        font-size: 13px; }
+        div.nav .notice-part div button .invisibleColor {
+          color: #e3e3e3; }
+
+div.all-content {
+  height: calc(100% - 160px); }
+  div.all-content div.side-menu {
+    width: 200px;
+    height: 100%;
+    background-color: #ffffff;
+    float: left; }
+    div.all-content div.side-menu div.menu-parent {
+      line-height: 50px;
+      height: 50px;
+      color: #ffffff;
+      background: #18335e;
+      cursor: pointer; }
+      div.all-content div.side-menu div.menu-parent img {
+        width: 40px;
+        height: 40px;
+        margin-left: 20px; }
+    div.all-content div.side-menu div.menu-parent.menuActive {
+      background-color: #5c9afd; }
+  div.all-content div#main-content {
+    width: calc(100% - 240px);
+    height: calc(100% - 30px);
+    margin: 20px 20px 10px 20px;
+    background-color: #ffffff;
+    float: left; }
+    div.all-content div#main-content div.content-view {
+      height: 100%; }
+  div.all-content div.content-view > div {
+    height: 100%; }
+
+div.query {
+  width: 100%;
+  padding: 20px 0; }
+  div.query div.queryParams {
+    width: 95%;
+    float: left; }
+    div.query div.queryParams * {
+      float: left; }
+    div.query div.queryParams label {
+      line-height: 25px;
+      width: 100px;
+      text-align: center; }
+    div.query div.queryParams input {
+      height: 25px; }
+    div.query div.queryParams input.inputTextLarge {
+      width: 200px; }
+    div.query div.queryParams input.inputTextSmall {
+      width: 100px; }
+    div.query div.queryParams input.inputTextWithSelect {
+      width: 90px;
+      margin-left: 10px; }
+    div.query div.queryParams input.siblingTextInput {
+      width: 94px; }
+    div.query div.queryParams select {
+      height: 25px; }
+    div.query div.queryParams select.selectSmall {
+      width: 100px; }
+    div.query div.queryParams select.selectLarge {
+      width: 200px; }
+  div.query div.queryParams::after {
+    content: "";
+    clear: both;
+    display: table; }
+
+div.query::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+div.annualYieldStandard {
+  width: 100%;
+  padding: 30px; }
+  div.annualYieldStandard table {
+    width: 100%; }
+    div.annualYieldStandard table tr {
+      height: 40px; }
+      div.annualYieldStandard table tr td, div.annualYieldStandard table tr th {
+        text-align: center;
+        border: 1px solid #e3e3e3; }
+    div.annualYieldStandard table thead tr th {
+      height: 60px;
+      border: 1px solid #e3e3e3;
+      line-height: 60px;
+      text-align: center; }
+    div.annualYieldStandard table thead tr th:nth-of-type(1) {
+      width: 100px;
+      height: 80px;
+      font-size: 12px;
+      position: relative; }
+    div.annualYieldStandard table thead tr th:nth-of-type(1) .use {
+      position: absolute;
+      left: 2px;
+      top: 25px;
+      z-index: 10; }
+    div.annualYieldStandard table thead tr th:nth-of-type(1) .grade {
+      position: absolute;
+      left: 39px;
+      top: -9px;
+      z-index: 11; }
+    div.annualYieldStandard table thead tr th:nth-of-type(1)::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 0px;
+      height: 0px;
+      border-bottom: 80px solid #e3e3e3;
+      border-right: 90px solid transparent; }
+    div.annualYieldStandard table thead tr th:nth-of-type(1)::after {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      content: '';
+      width: 0px;
+      height: 0px;
+      border-bottom: 78px solid white;
+      border-right: 87px solid transparent; }
+    div.annualYieldStandard table input {
+      width: 100%;
+      text-align: center;
+      border: none; }
+  div.annualYieldStandard button {
+    width: 100px;
+    height: 30px;
+    margin-top: 30px;
+    background-color: #5c9afd;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    color: #ffffff;
+    float: right;
+    border: 0;
+    border-radius: 4px; }
+
+div.remindTime {
+  width: 100%;
+  height: 100%;
+  background-color: #e3e3e3;
+  overflow: hidden; }
+  div.remindTime .remind {
+    width: 400px;
+    height: 300px;
+    background-color: #ffffff;
+    margin: 50px auto; }
+    div.remindTime .remind .wrap {
+      padding: 70px 40px;
+      overflow: hidden; }
+      div.remindTime .remind .wrap p {
+        margin-bottom: 24px;
+        overflow: hidden; }
+        div.remindTime .remind .wrap p input {
+          float: right;
+          outline: 0; }
+      div.remindTime .remind .wrap button {
+        width: 80px;
+        height: 25px;
+        background-color: #0067b2;
+        font-size: 16px;
+        text-align: center;
+        line-height: 25px;
+        color: #ffffff;
+        float: right;
+        border: 0;
+        border-radius: 4px;
+        margin-top: 40px; }
+
+div.landInfo {
+  padding: 0 20px; }
+  div.landInfo div.addLandButton {
+    height: 30px;
+    margin-bottom: 20px; }
+    div.landInfo div.addLandButton button {
+      height: 100%;
+      width: 100px;
+      background-color: #18335e;
+      color: #ffffff; }
+
+div.projectInfo {
+  padding: 0 10px; }
+  div.projectInfo div.current {
+    width: 100%;
+    padding: 20px 0; }
+    div.projectInfo div.current div.currentParams {
+      width: 95%;
+      float: left; }
+      div.projectInfo div.current div.currentParams * {
+        float: left; }
+      div.projectInfo div.current div.currentParams label {
+        line-height: 25px;
+        width: 100px;
+        text-align: center; }
+      div.projectInfo div.current div.currentParams input {
+        height: 25px; }
+      div.projectInfo div.current div.currentParams input.inputTextLarge {
+        width: 200px; }
+      div.projectInfo div.current div.currentParams input.inputTextSmall {
+        width: 100px; }
+      div.projectInfo div.current div.currentParams input.inputTextWithSelect {
+        width: 90px;
+        margin-left: 10px; }
+      div.projectInfo div.current div.currentParams input.noMargin {
+        margin-left: 10px;
+        margin-top: -20px; }
+      div.projectInfo div.current div.currentParams select {
+        height: 25px; }
+      div.projectInfo div.current div.currentParams select.selectSmall {
+        width: 100px; }
+      div.projectInfo div.current div.currentParams select.selectLarge {
+        width: 200px; }
+    div.projectInfo div.current div.currentParams::after {
+      content: "";
+      clear: both;
+      display: table; }
+  div.projectInfo div.current::after {
+    content: "";
+    clear: both;
+    display: table; }
+
+table.default {
+  width: 100%; }
+  table.default tr {
+    height: 40px; }
+    table.default tr td, table.default tr th {
+      text-align: center;
+      border: 1px solid #e3e3e3; }
+  table.default thead tr {
+    background-color: #5c9afd; }
+    table.default thead tr th {
+      color: #ffffff; }
+
+.modal-mySize {
+  width: 1000px;
+  height: 720px; }
+  .modal-mySize .modal-content {
+    width: 100%;
+    height: 100%; }
+
+div.attachment {
+  width: 100%;
+  height: 100%;
+  padding: 15px; }
+  div.attachment .top {
+    width: 100%;
+    height: 75px; }
+    div.attachment .top .left {
+      float: left;
+      height: 30px;
+      margin-top: 10px; }
+      div.attachment .top .left lable {
+        font-size: 14px; }
+      div.attachment .top .left select {
+        height: 30px;
+        margin-left: 20px;
+        border-radius: 2px;
+        text-align: center; }
+      div.attachment .top .left button {
+        border: 0;
+        width: 120px;
+        height: 30px;
+        color: #ffffff;
+        background-color: #18335e;
+        margin-left: 50px;
+        border-radius: 4px; }
+    div.attachment .top .closed {
+      float: right;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5c9afd;
+      cursor: pointer; }
+    div.attachment .top .closed::before, div.attachment .top .closed::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      height: 26px;
+      margin-top: -13px;
+      border-radius: 1px;
+      background: #ffffff; }
+    div.attachment .top .closed::before {
+      transform: rotate(45deg); }
+    div.attachment .top .closed::after {
+      transform: rotate(-45deg); }
+
+.modal-A4 {
+  width: 793px;
+  height: 1150px;
+  margin: 30px auto 0 auto; }
+  .modal-A4 .modal-content {
+    width: 100%;
+    height: 100%; }
+    .modal-A4 .modal-content .closed {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5c9afd; }
+    .modal-A4 .modal-content .closed::before, .modal-A4 .modal-content .closed::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      height: 26px;
+      margin-top: -13px;
+      border-radius: 1px;
+      background: #ffffff; }
+    .modal-A4 .modal-content .closed::before {
+      transform: rotate(45deg); }
+    .modal-A4 .modal-content .closed::after {
+      transform: rotate(-45deg); }
+  .modal-A4 div#content {
+    overflow: hidden; }
+    .modal-A4 div#content table {
+      text-align: center; }
+    .modal-A4 div#content table tr td:first-child, .modal-A4 div#content table tr td:nth-child(3) {
+      width: 115px;
+      height: 50px; }
+  .modal-A4 p.printButton {
+    position: relative;
+    padding-right: 30px;
+    top: -60px;
+    text-align: right; }
+
+div.addLand {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  div.addLand div.myLabel {
+    border-bottom: 5px solid #0067b2;
+    text-align: center;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    padding: 0 10px;
+    display: inline-block; }
+  div.addLand div.myContent {
+    width: 1000px;
+    padding-top: 100px;
+    margin: auto; }
+    div.addLand div.myContent p.header {
+      text-align: right; }
+    div.addLand div.myContent table.addLandTable {
+      margin: auto; }
+      div.addLand div.myContent table.addLandTable tr {
+        height: 50px; }
+        div.addLand div.myContent table.addLandTable tr td {
+          text-align: left; }
+          div.addLand div.myContent table.addLandTable tr td input, div.addLand div.myContent table.addLandTable tr td select {
+            height: 30px;
+            width: 100%;
+            border: 1px solid #e3e3e3;
+            padding-left: 15px; }
+          div.addLand div.myContent table.addLandTable tr td input {
+            background: white; }
+          div.addLand div.myContent table.addLandTable tr td input.small, div.addLand div.myContent table.addLandTable tr td select.small {
+            width: 45%; }
+          div.addLand div.myContent table.addLandTable tr td select.small {
+            margin-right: 15px; }
+        div.addLand div.myContent table.addLandTable tr td:nth-child(1) {
+          width: 300px; }
+        div.addLand div.myContent table.addLandTable tr td:nth-child(2), div.addLand div.myContent table.addLandTable tr td:nth-child(4) {
+          width: 400px; }
+        div.addLand div.myContent table.addLandTable tr td:nth-child(3) {
+          padding-left: 80px;
+          width: 400px; }
+        div.addLand div.myContent table.addLandTable tr td:nth-child(1):before, div.addLand div.myContent table.addLandTable tr td:nth-child(3):before {
+          content: "*";
+          color: red; }
+        div.addLand div.myContent table.addLandTable tr td.not-required:nth-child(1):before, div.addLand div.myContent table.addLandTable tr td.not-required:nth-child(3):before {
+          content: ""; }
+    div.addLand div.myContent p.save {
+      margin-top: 40px;
+      text-align: right; }
+
+.table-page {
+  padding: 12px 0;
+  text-align: right; }
+  .table-page > div {
+    float: left;
+    font-size: 14px; }
+    .table-page > div img {
+      cursor: pointer; }
+    .table-page > div span {
+      color: #909090; }
+    .table-page > div button {
+      border: solid 1px #909090;
+      border-radius: 3px;
+      color: #909090;
+      background: #ffffff;
+      padding: 3px 10px;
+      margin-left: 15px; }
+    .table-page > div button:hover {
+      background: #E0E1E1; }
+  .table-page > span {
+    font-size: 13px;
+    color: #a8a8a8; }
+  .table-page .pagination {
+    margin: 0;
+    vertical-align: bottom; }
+    .table-page .pagination > li > a {
+      padding: 3px 9px; }
+
+div.changePassword {
+  width: 100%;
+  height: 100%;
+  background-color: #e3e3e3;
+  overflow: hidden; }
+  div.changePassword .window {
+    width: 450px;
+    height: 360px;
+    background-color: #ffffff;
+    margin: 50px auto;
+    padding: 30px 60px 10px; }
+    div.changePassword .window > p {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 30px; }
+      div.changePassword .window > p button {
+        margin-top: 10px;
+        font-size: 14px;
+        background: #5c9afd;
+        color: #ffffff;
+        padding: 5px 50px; }
+    div.changePassword .window div {
+      border-bottom: solid 2px #e3e3e3;
+      height: 30px;
+      margin-bottom: 30px;
+      position: relative; }
+      div.changePassword .window div > span {
+        display: inline-block;
+        width: 80px; }
+      div.changePassword .window div > input {
+        width: calc(100% - 90px);
+        border: none;
+        color: #757575; }
+      div.changePassword .window div p {
+        font-size: 12px;
+        position: absolute;
+        right: 0;
+        bottom: -35px; }
+        div.changePassword .window div p span {
+          text-align: center;
+          display: inline-block;
+          width: 20px; }
+          div.changePassword .window div p span.currentLevel {
+            color: red;
+            border-bottom: solid 1px red; }
+
+div.monthTable {
+  width: 100%;
+  font-family: FangSong, 仿宋; }
+  div.monthTable .condition {
+    border-bottom: none;
+    margin-top: 2%;
+    margin-left: 1%; }
+    div.monthTable .condition span {
+      font-family: 微软雅黑;
+      margin-right: 10px;
+      font-size: 14px; }
+    div.monthTable .condition input {
+      display: inline-block;
+      width: 120px;
+      height: 24px;
+      margin-right: 20px; }
+    div.monthTable .condition select {
+      height: 24px; }
+    div.monthTable .condition button {
+      font-family: 微软雅黑;
+      float: right;
+      color: #fff;
+      padding: 5px 18px;
+      margin-right: 20px;
+      background-color: #5d9afe;
+      border: none;
+      border-radius: 3px; }
+  div.monthTable .detail {
+    width: 85%;
+    max-width: 1300px;
+    margin: 25px auto;
+    text-align: center; }
+    div.monthTable .detail > div {
+      border-bottom: 1px solid #000;
+      text-align: left; }
+      div.monthTable .detail > div img {
+        width: 22px;
+        margin-bottom: 5px; }
+      div.monthTable .detail > div span {
+        font-size: 20px; }
+    div.monthTable .detail > h3 {
+      font-size: 20px;
+      font-weight: bold; }
+    div.monthTable .detail > p {
+      float: right;
+      margin: 0;
+      font-size: 13px; }
+    div.monthTable .detail table {
+      width: 100%;
+      border-collapse: collapse; }
+      div.monthTable .detail table tr td {
+        height: 40px; }
+  div.monthTable .print {
+    background-color: #19335f;
+    font-family: 微软雅黑;
+    float: right;
+    color: #fff;
+    padding: 8px 9px;
+    margin-right: 11.2%;
+    border: none;
+    border-radius: 3px; }
+
+div.historyLog {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  div.historyLog table tbody tr td {
+    width: 64px;
+    font-family: FangSong; }
+  div.historyLog table tbody tr:nth-child(1) td {
+    height: 32px; }
+  div.historyLog table th {
+    font-family: FangSong;
+    font-family: 微软雅黑;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    height: 37px; }
+  div.historyLog .print {
+    margin-top: -10px;
+    margin-bottom: 20px; }
+
+div.analyze {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+  div.analyze .detail table th {
+    font-family: FangSong;
+    font-family: 微软雅黑;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    height: 37px; }
+  div.analyze .detail table tbody tr {
+    height: 32px; }
+    div.analyze .detail table tbody tr:first-child {
+      height: 50px; }
+    div.analyze .detail table tbody tr td {
+      font-weight: bold;
+      height: 32px; }
+  div.analyze .print {
+    margin-bottom: 20px; }

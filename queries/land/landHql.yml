@@ -1,0 +1,108 @@
+---
+  grammer: HQL
+  queries:
+    - name: Tdxxquery
+      resultType: Tdxx
+      statement: 
+        "
+        select 
+           a
+         from 
+           Tdxx a
+         where
+          (a.zybs = '0'
+          or a.zybs = '2')
+         #if($getdwmc)
+         and a.dwmc like :getdwmc
+         #end
+         #if($gettdzh)
+         and a.tdzh like :gettdzh
+         #end
+         #if($getsscq)
+         and a.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.mph like :getmph
+         #end
+         #if($gettddj)
+         and a.tddj.id = :gettddj
+         #end
+         #if($getpzyt)
+         and a.pzyt.id = :getpzyt
+         #end
+         order by a.dkh desc
+        "
+
+    - name: Tdxxquery1
+      resultType: Htxx
+      statement:
+            "
+            select
+               a
+             from
+               Htxx a
+             where
+              a.tdxx.zybs = '1'
+             and
+              a.dqlc !='合同已结束'
+             #if($getdwmc)
+             and a.tdxx.dwmc like :getdwmc
+             #end
+             #if($gettdzh)
+             and a.tdxx.tdzh like :gettdzh
+             #end
+             #if($getsscq)
+             and a.tdxx.xzqh.id = :getsscq
+             #end
+             #if($getjd)
+             and a.tdxx.jdxx.id = :getjd
+             #end
+             #if($getmph)
+             and a.tdxx.mph like :getmph
+             #end
+             #if($gettddj)
+             and a.tdxx.tddj.id = :gettddj
+             #end
+             #if($getpzyt)
+             and a.pzyt.id = :getpzyt
+             #end
+             #if($getStart)
+             and a.htksrq >= :getStart and a.htksrq <= :getEnd
+             #end
+             order by a.tdxx.dkh,a.htrq desc
+            "
+
+    - name: Dkhquery
+      resultType: Tdxx
+      statement:
+        "
+        select
+          a
+         from
+          Tdxx a
+         where
+           a.zybs != '3'
+         #if($getdkh)
+           and a.dkh like :getdkh
+         #end
+         order by a.dkh desc
+         "
+    - name: htsjquery
+      resultType: Htxx
+      statement:
+        "
+         select
+           a
+         from
+           Htxx a
+         where
+           1=1
+          #if($getId)
+           and a.tdxx.objectId = :getId
+          #end
+         "
+
+        

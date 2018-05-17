@@ -1,0 +1,150 @@
+---
+  grammer: SQL
+  queries:
+    - name: reportquery
+      resultType: Map
+      statement: 
+        "select
+           *
+          from
+         (select
+            '月划拨' as type,COUNT(*) as sl,sum(b.JZMJ) as jzmj,
+            sum(a.HJYJJE) as je,sum(SJZE) as sjje,
+            sum(a.HJYJJE)-sum(SJZE) as chae
+         from 
+            htxx a
+          left join
+            tdxx b
+           on a.TDXXID = b.OBJECTID
+         where
+          a.HTQDQK ='合同已签'
+         and
+          b.zslx in('1','2','3')
+         #if($cq)
+           and b.cq=:cq
+         #end
+         #if($monthStart)
+          and a.htrq>=:monthStart  and a.htrq<=:monthEnd )
+         #end
+         union
+          (select
+          '年划拨' as type,COUNT(*) as sl,sum(b.JZMJ) as jzmj,
+              sum(a.HJYJJE) as je,sum(SJZE) as sjje,
+              sum(a.HJYJJE)-sum(SJZE) as chae
+           from
+             htxx a
+           left join
+             tdxx b
+           on a.TDXXID = b.OBJECTID
+            where
+             a.HTQDQK ='合同已签'
+            and
+             b.zslx in('1','2','3')
+             #if($cq)
+              and b.cq=:cq
+             #end
+             #if($yearStart)
+             and a.htrq>=:yearStart  and a.htrq<=:yearEnd )
+             #end
+        "
+
+    - name: reportquery1
+      resultType: Map
+      statement:
+        "select
+              *
+          from
+               (select
+                  '月出让' as type,COUNT(*) as sl,sum(b.JZMJ) as jzmj,
+                  sum(a.HJYJJE) as je,sum(a.SJZE) as sjje,
+                  sum(a.HJYJJE)-sum(a.SJZE) as chae
+               from
+                  htxx a
+                left join
+                  tdxx b
+                 on a.TDXXID = b.OBJECTID
+               where
+                a.HTQDQK ='合同已签'
+               and
+                b.zslx ='4'
+                #if($cq)
+                  and b.cq=:cq
+                #end
+               #if($monthStart)
+                and a.htrq>=:monthStart and a.htrq<=:monthEnd )
+               #end
+
+               union
+                (select
+                '年出让' as type,COUNT(*) as sl,sum(b.JZMJ) as jzmj,
+                    sum(a.HJYJJE) as je,sum(a.SJZE) as sjje,
+                    sum(a.HJYJJE)-sum(a.SJZE) as chae
+                 from
+                   htxx a
+                 left join
+                   tdxx b
+                 on a.TDXXID = b.OBJECTID
+                  where
+                   a.HTQDQK ='合同已签'
+                  and
+                   b.zslx ='4'
+                   #if($cq)
+                    and b.cq=:cq
+                   #end
+                   #if($yearStart)
+                   and a.htrq>=:yearStart  and a.htrq<=:yearEnd )
+                   #end
+              "
+
+    - name: reportquery3
+      resultType: Map
+      statement:
+        "
+         select
+          d.CQ,c.zslx,count(*) as htsl,sum(b.jzmj) as jzmj,
+          sum(HJYJJE) as HJYJJE,sum(SJZE) as SJZE
+         from
+           htxx a
+         left join
+           tdxx b
+          on a.TDXXID = b.OBJECTID
+         left join
+            zslx c
+          on b.zslx = c.objectid
+         left join
+           xzqh d
+          on b.CQ = d.objectid
+         where
+          a.HTQDQK ='合同已签'
+          #if($start)
+           and a.htrq>=:start  and a.htrq<=:end
+          #end
+          group by d.CQ,c.zslx
+          order by d.CQ,c.zslx
+         "
+    - name: reportquery4
+      resultType: Map
+      statement:
+        "
+          select
+            c.zslx,count(*) as htsl,sum(b.jzmj) as jzmj,
+             sum(HJYJJE) as HJYJJE,sum(SJZE) as SJZE
+          from
+            htxx a
+             left join
+                   tdxx b
+                  on a.TDXXID = b.OBJECTID
+                 left join
+                    zslx c
+                  on b.zslx = c.objectid
+                 left join
+                   xzqh d
+                  on b.CQ = d.objectid
+                 where
+                  a.HTQDQK ='合同已签'
+                  #if($start)
+                   and a.htrq>=:start  and a.htrq<=:end
+                  #end
+                  group by c.zslx
+                  order by c.zslx
+            "

@@ -1,0 +1,117 @@
+<style id="style">
+    div#content {
+        width: 793px;
+        height: 1150px;
+        padding: 30px 40px;
+        margin: auto;
+    }
+
+    div#content table {
+        text-align: center;
+        width: 600px;
+        border-collapse: collapse;
+        border: 1px solid black;
+        margin: auto;
+    }
+
+    div#content table tr td:first-child, div#content table tr td:nth-child(3) {
+        width: 115px;
+        height: 50px;
+        font-weight: bold;
+    }
+
+    div#content .boldFont {
+        font-weight: bold;
+    }
+    div#content span.editable {
+        min-width: 50px;
+    }
+</style>
+<div class="closed" ng-click="close()"></div>
+<div id="content">
+    <p style="text-align: center"><label style="font-size: 22px" class="boldFont">杭州市区土地年收益审批表</label></p>
+    <p style="float: right;margin: 0;font-size: 12px;"><span>{{approvalDetail.htbh}}</span></p>
+    <table style="width: 100%;border-collapse:collapse;" border="1">
+        <tr>
+            <td><label>土地权利人</label></td>
+            <td colspan="3"><span>{{item.dwmc}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地坐落</label></td>
+            <td colspan="3"><span>{{item.xzqh.cq}}{{item.jdxx.jdmc}}{{item.mph}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地面积</label></td>
+            <td><span>{{item.tdzmj}}</span></td>
+            <td><label>建筑面积</label></td>
+            <td><span>{{item.jzzmj}}</span></td>
+        </tr>
+        <tr>
+            <td><label>批准土地用途</label></td>
+            <td><span>{{item.pzyt.pzyt}}</span></td>
+            <td><label>实际土地用途</label></td>
+            <td><span>{{item.xzyt.pzyt}}</span></td>
+        </tr>
+        <tr>
+            <td><label>土地等级</label></td>
+            <td>{{item.tddj.tddj}}</span></td>
+            <td><label>使用权类型</label></td>
+            <td><span>{{item.syqlx.syqlx}}</span></td>
+        </tr>
+        <tr>
+            <td><label>计征面积</label></td>
+            <td><span>{{item.jzmj}}</span></td>
+            <td><label>合同金额</label></td>
+            <td><span>{{approvalDetail.hjyjje}}</span></td>
+        </tr>
+        <tr>
+            <td><label>合同年限</label></td>
+            <td colspan="3">{{approvalDetail.htksrq}}至{{approvalDetail.htjsrq}}</td>
+        </tr>
+        <tr>
+            <td>
+                <span style="display: block">经</span>
+                <span style="display: block">办</span>
+                <span style="display: block">意</span>
+                <span style="display: block">见</span>
+            </td>
+            <td colspan="3" style="font-size: 14px;height: 145px; text-align: left;">
+            <span id="jbyj" style="display: inline-block; height: 125px" class="editable">
+                {{approvalDetail.jbyj}}
+            </span>
+                <p style="text-align: left;padding-left: 15px; height: 20px;">经办人:<span style="margin-left: 250px">日期:</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="display: block">审</span>
+                <span style="display: block">核</span>
+                <span style="display: block">意</span>
+                <span style="display: block">见</span>
+            </td>
+            <td colspan="3" style="font-size: 14px;height: 95px; text-align: left">
+                <span id="shyj" style="display: inline-block; height: 85px" class="editable">{{approvalDetail.kzyj}}</span>
+                <p style="text-align: left;padding-left: 15px; height: 20px;">审核人:<span style="margin-left: 250px">日期:</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="display: block">审</span>
+                <span style="display: block">批</span>
+                <span style="display: block">意</span>
+                <span style="display: block">见</span>
+            </td>
+            <td colspan="3" style="font-size: 14px;height: 95px; text-align: left">
+                <span id="spyj" style="display: inline-block; height: 85px" class="editable">{{approvalDetail.jldyj}}</span>
+                <p style="text-align: left;padding-left: 15px; height: 20px;">审批人:<span style="margin-left: 250px">日期:</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td><label>备注</label></td>
+            <td colspan="3" style="font-size: 14px;height: 95px;text-align: left"><span id="bz" contenteditable="true" class="editable">{{approvalDetail.bz}}</span></td>
+        </tr>
+    </table>
+</div>
+<p class="printButton">
+    <button ng-click="print()" class="btn btn-darkBlue">打印</button>
+</p>

@@ -1,0 +1,45 @@
+<div ng-controller="userCtrl" style="width:100%;position:relative">
+    <!--    用户管理-->
+    <div class="content1">
+        <div class="user_toolTip">
+            <div class="user_toolTip_left">
+                <select class="select_tool" ng-options="option.key as option.name for option in user.table.searchList" ng-model="user.table.searchName"></select>
+                <input type="text" class="input_tool" ng-model="user.searchValue" placeholder="查询..." />
+                <button type="button" class="btn-search" ng-click="user.search()">查询</button>
+            </div>
+            <div class="user_toolTip_right">
+                <button type="button" class="btn-search" ng-click="user.addUser('新建用户')" authox-resource="authox | manage">新建用户</button>
+                <button type="button" class="btn-refresh" ng-click="user.refresh()">刷新</button>
+            </div>
+        </div>
+        <div class="user_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th ng-repeat="thead in user.table.headList">{{thead}}</th>
+                        <th style="width:200px">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="content in user.table.content">
+                    	<td>{{content.account}}</td>
+                        <td>{{content.displayName}}</td>
+                        <td><span class="role-parent" ng-repeat="roles in content.roles">{{roles.name}}</span></td>
+                        <td>{{content.description}}</td>
+                        <td>{{content.createTimestamp|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+                        <td style="width:200px" authox-unable-resource="authox | manage">
+							<a class="table_a" style="width:100%" ui-sref="system.user.select({key:content.authoxuser_Id})">查看</a></td>
+                        <td style="width:200px" authox-resource="authox | manage" >
+                        	<a class="table_a border_right" ui-sref="system.user.select({key:content.authoxuser_Id})">管理</a><a class="table_a" ng-click="user.delUser(content)">删除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="page" style="margin-top: 3px;margin-right: 15px;">
+                <div class="page_left">共有{{user.pages.totalCount}}条，每页显示{{user.pages.pageSize}}条</div>
+                <uib-pagination ng-change="user.pageChanged(user.pages.currentPageNo)" total-items="user.pages.totalCount" ng-model="user.pages.currentPageNo" items-per-page="user.pages.pageSize" 
+                	boundary-links="true" direction-links="true" rotate="false" max-size="10" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                </uib-pagination>
+            </div>
+        </div>
+    </div>
+</div>

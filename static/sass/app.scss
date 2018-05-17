@@ -1,0 +1,807 @@
+@import "color";
+@import "button";
+@import "font";
+
+$navHeight: 80px;
+$headerHeight: 80px;
+$mainContentHeight: calc(100% - 160px);
+$sideMenuHeight: 50px;
+html {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  min-width: 1366px;
+  min-height: 768px;
+  margin: 0;
+  position: relative;
+  background-color: $colorLightGrey;
+}
+
+div.header {
+  width: 100%;
+  height: $headerHeight;
+  padding: 15px 15px;
+  background-color: $colorDarkBlue;
+  box-sizing: border-box;
+  div.headerLeft, div.headerRight {
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    line-height: 50px;
+  }
+  div.headerLeft {
+    padding-left: 70px;
+    color: $colorWhite;
+    font-size: $fontSizeWebSiteName;
+  }
+  div.headerRight {
+    text-align: right;
+    button {
+      display: inline-block;
+      margin-right: 30px;
+    }
+  }
+}
+
+div.nav {
+  width: 100%;
+  height: $navHeight;
+  line-height: $navHeight;
+  text-align: center;
+  background-color: $colorWhite;
+  button {
+    margin: 10px;
+  }
+  .notice-part{
+    padding-right: 20px;
+    float: right;
+    height: 100%;
+    div{
+      height: 50%;
+      line-height: normal;
+      text-align: left;
+      button{
+        background: $colorRed;
+        color: $colorWhite;
+        border-radius: 3px;
+        min-width: 150px;
+        height: 24px;
+        border: none;
+        font-size: 13px;
+        .invisibleColor{
+          color: $colorLightGrey;
+        }
+      }
+    }
+  }
+}
+
+div.all-content {
+  height: $mainContentHeight;
+  div.side-menu {
+    width: 200px;
+    height: 100%;
+    background-color: $colorWhite;
+    float: left;
+    div.menu-parent {
+      line-height: $sideMenuHeight;
+      height: $sideMenuHeight;
+      color: $colorWhite;
+      background: $colorDarkBlue;
+      cursor: pointer;
+      img {
+        width: 40px;
+        height: 40px;
+        margin-left: 20px;
+      }
+    }
+    div.menu-parent.menuActive {
+      background-color: $colorLightBlue;
+    }
+  }
+  div#main-content {
+    width: calc(100% - 240px);
+    height: calc(100% - 30px);
+    margin: 20px 20px 10px 20px;
+    background-color: $colorWhite;
+    float: left;
+    div.content-view {
+      height: 100%;
+    }
+  }
+  div.content-view > div {
+    height: 100%;
+  }
+}
+
+div.query {
+  width: 100%;
+  padding: 20px 0;
+  div.queryParams {
+    width: 95%;
+    float: left;
+    * {
+      float: left;
+    }
+    label {
+      line-height: 25px;
+      width: 100px;
+      text-align: center;
+    }
+    input {
+      height: 25px;
+    }
+    input.inputTextLarge {
+      width: 200px;
+    }
+    input.inputTextSmall {
+      width: 100px;
+    }
+    input.inputTextWithSelect {
+      width: 90px;
+      margin-left: 10px;
+    }
+    input.siblingTextInput {
+      width: 94px;
+    }
+    select {
+      height: 25px;
+    }
+    select.selectSmall {
+      width: 100px;
+    }
+    select.selectLarge {
+      width: 200px;
+    }
+  }
+  div.queryParams::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+div.query::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+div.annualYieldStandard {
+  width: 100%;
+  padding: 30px;
+  table{
+    width: 100%;
+    tr {
+      height: 40px;
+      td, th {
+        text-align: center;
+        border: 1px solid $colorLightGrey;
+      }
+    }
+    thead {
+      tr {
+        th {
+          height: 60px;
+          border: 1px solid $colorLightGrey;
+          line-height: 60px;
+          text-align: center;
+        }
+        th:nth-of-type(1) {
+          width: 100px;
+          height: 80px;
+          font-size: 12px;
+          position: relative;
+        }
+        th:nth-of-type(1) .use {
+          position: absolute;
+          left: 2px;
+          top: 25px;
+          z-index: 10;
+        }
+        th:nth-of-type(1) .grade {
+          position: absolute;
+          left: 39px;
+          top: -9px;
+          z-index: 11;
+        }
+        th:nth-of-type(1)::before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          content: '';
+          width: 0px;
+          height: 0px;
+          border-bottom: 80px solid $colorLightGrey;
+          border-right: 90px solid transparent;
+        }
+        th:nth-of-type(1)::after {
+          position: absolute;
+          left: 0;
+          top: 1px;
+          content: '';
+          width: 0px;
+          height: 0px;
+          border-bottom: 78px solid white;
+          border-right: 87px solid transparent;
+        }
+      }
+    }
+    input{
+      width: 100%;
+      text-align: center;
+      border: none;
+    }
+  }
+  button {
+    width: 100px;
+    height: 30px;
+    margin-top: 30px;
+    background-color: $colorLightBlue;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    color: $colorWhite;
+    float: right;
+    border: 0;
+    border-radius: 4px;
+  }
+}
+
+div.remindTime {
+  width: 100%;
+  height: 100%;
+  background-color: $colorLightGrey;
+  overflow: hidden;
+  .remind {
+    width: 400px;
+    height: 300px;
+    background-color: $colorWhite;
+    margin: 50px auto;
+    .wrap {
+      padding: 70px 40px;
+      overflow: hidden;
+      p {
+        margin-bottom: 24px;
+        overflow: hidden;
+        input {
+          float: right;
+          outline: 0;
+        }
+      }
+      button {
+        width: 80px;
+        height: 25px;
+        background-color: $colorMiddleBlue;
+        font-size: 16px;
+        text-align: center;
+        line-height: 25px;
+        color: $colorWhite;
+        float: right;
+        border: 0;
+        border-radius: 4px;
+        margin-top: 40px;
+      }
+    }
+  }
+}
+
+div.landInfo {
+  padding: 0 20px;
+  div.addLandButton {
+    height: 30px;
+    margin-bottom: 20px;
+    button {
+      height: 100%;
+      width: 100px;
+      background-color: $colorDarkBlue;
+      color: $colorWhite;
+    }
+  }
+}
+
+div.projectInfo {
+  padding: 0 10px;
+  div.current {
+    width: 100%;
+    padding: 20px 0;
+    div.currentParams {
+      width: 95%;
+      float: left;
+      * {
+        float: left;
+      }
+      label {
+        line-height: 25px;
+        width: 100px;
+        text-align: center;
+      }
+      input {
+        height: 25px;
+      }
+      input.inputTextLarge {
+        width: 200px;
+      }
+      input.inputTextSmall {
+        width: 100px;
+      }
+      input.inputTextWithSelect {
+        width: 90px;
+        margin-left: 10px;
+      }
+      input.noMargin {
+        margin-left: 10px;
+        margin-top: -20px;
+      }
+      select {
+        height: 25px;
+      }
+      select.selectSmall {
+        width: 100px;
+      }
+      select.selectLarge {
+        width: 200px;
+      }
+    }
+    div.currentParams::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+  div.current::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+table.default {
+  width: 100%;
+  tr {
+    height: 40px;
+    td, th {
+      text-align: center;
+      border: 1px solid $colorLightGrey;
+    }
+  }
+  thead {
+    tr {
+      background-color: $colorLightBlue;
+      th {
+        color: $colorWhite;
+      }
+    }
+  }
+}
+
+.modal-mySize {
+  width: 1000px;
+  height: 720px;
+  .modal-content{
+    width: 100%;
+    height: 100%;
+  }
+}
+div.attachment {
+  width: 100%;
+  height:100%;
+  padding: 15px;
+  .top {
+    width: 100%;
+    height: 75px;
+    .left {
+      float: left;
+      height: 30px;
+      margin-top: 10px;
+      lable {
+        font-size: 14px;
+      }
+      select {
+        height: 30px;
+        margin-left: 20px;
+        border-radius: 2px;
+        text-align: center;
+      }
+      button {
+        border: 0;
+        width: 120px;
+        height: 30px;
+        color: $colorWhite;
+        background-color: $colorDarkBlue;
+        margin-left: 50px;
+        border-radius: 4px;
+      }
+    }
+    .closed {
+      float: right;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $colorLightBlue;
+      cursor: pointer;
+    }
+    .closed::before, .closed::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      height: 26px;
+      margin-top: -13px;
+      border-radius: 1px;
+      background: #ffffff;
+    }
+    .closed::before {
+      transform: rotate(45deg);
+    }
+    .closed::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.modal-A4 {
+  width: 793px;
+  height: 1150px;
+  margin: 30px auto 0 auto;
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    .closed {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $colorLightBlue;
+    }
+    .closed::before, .closed::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -1px;
+      width: 2px;
+      height: 26px;
+      margin-top: -13px;
+      border-radius: 1px;
+      background: #ffffff;
+    }
+    .closed::before {
+      transform: rotate(45deg);
+    }
+    .closed::after {
+      transform: rotate(-45deg);
+    }
+  }
+  div#content {
+    overflow: hidden;
+    table {
+      text-align: center;
+    }
+    table tr td:first-child, table tr td:nth-child(3) {
+      width: 115px;
+      height: 50px;
+    }
+  }
+  p.printButton {
+    position: relative;
+    padding-right: 30px;
+    top: -60px;
+    text-align: right;
+  }
+}
+
+div.addLand {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  div.myLabel {
+    border-bottom: 5px solid $colorMiddleBlue;
+    text-align: center;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    padding: 0 10px;
+    display: inline-block;
+  }
+  div.myContent {
+    width: 1000px;
+    padding-top: 100px;
+    margin: auto;
+    p.header {
+      text-align: right;
+    }
+    table.addLandTable {
+      margin: auto;
+      tr {
+        height: 50px;
+        td {
+          text-align: left;
+          input, select {
+            height: 30px;
+            width: 100%;
+            border: 1px solid $colorLightGrey;
+            padding-left: 15px;
+          }
+          input {
+            background: white;
+          }
+          input.small, select.small {
+            width: 45%;
+          }
+          select.small {
+            margin-right: 15px;
+          }
+        }
+        td:nth-child(1) {
+          width: 300px;
+        }
+        td:nth-child(2), td:nth-child(4) {
+          width: 400px;
+        }
+        td:nth-child(3) {
+          padding-left: 80px;
+          width: 400px;
+        }
+        td:nth-child(1):before, td:nth-child(3):before {
+          content: "*";
+          color: red;
+        }
+        td.not-required:nth-child(1):before, td.not-required:nth-child(3):before {
+          content: "";
+        }
+      }
+    }
+    p.save {
+      margin-top: 40px;
+      text-align: right;
+    }
+  }
+}
+
+.table-page {
+  padding: 12px 0;
+  text-align: right;
+  & > div {
+    float: left;
+    font-size: 14px;
+    img {
+      cursor: pointer;
+    }
+    span {
+      color: #909090;
+    }
+    button {
+      border: solid 1px #909090;
+      border-radius: 3px;
+      color: #909090;
+      background: #ffffff;
+      padding: 3px 10px;
+      margin-left: 15px;
+    }
+    button:hover {
+      background: #E0E1E1;
+    }
+  }
+  & > span {
+    font-size: 13px;
+    color: #a8a8a8;
+  }
+  .pagination {
+    margin: 0;
+    vertical-align: bottom;
+    & > li > a {
+      padding: 3px 9px;
+    }
+  }
+}
+
+div.changePassword {
+  width: 100%;
+  height: 100%;
+  background-color: $colorLightGrey;
+  overflow: hidden;
+  .window {
+    width: 450px;
+    height: 360px;
+    background-color: $colorWhite;
+    margin: 50px auto;
+    padding: 30px 60px 10px;
+    & > p {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 30px;
+      button {
+        margin-top: 10px;
+        font-size: 14px;
+        background: $colorLightBlue;
+        color: $colorWhite;
+        padding: 5px 50px;
+      }
+    }
+    div {
+      border-bottom: solid 2px $colorLightGrey;
+      height: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      & > span {
+        display: inline-block;
+        width: 80px;
+      }
+      & > input {
+        width: calc(100% - 90px);
+        border: none;
+        color: $colorDarkGray;
+      }
+      p {
+        font-size: 12px;
+        position: absolute;
+        right: 0;
+        bottom: -35px;
+        span {
+          text-align: center;
+          display: inline-block;
+          width: 20px;
+          &.currentLevel {
+            color: $colorRed;
+            border-bottom: solid 1px $colorRed;
+          }
+        }
+      }
+    }
+  }
+}
+
+div.monthTable {
+  width: 100%;
+  font-family: FangSong, 仿宋;
+  .condition {
+    border-bottom: none;
+    margin-top: 2%;
+    margin-left: 1%;
+    span {
+      font-family: 微软雅黑;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+    input {
+      display: inline-block;
+      width: 120px;
+      height: 24px;
+      margin-right: 20px;
+    }
+    select {
+      height: 24px;
+    }
+    button {
+      font-family: 微软雅黑;
+      float: right;
+      color: #fff;
+      padding: 5px 18px;
+      margin-right: 20px;
+      background-color: #5d9afe;
+      border: none;
+      border-radius: 3px;
+    }
+  }
+  .detail {
+    width: 85%;
+    max-width: 1300px;
+    margin: 25px auto;
+    text-align: center;
+    > div {
+      border-bottom: 1px solid #000;
+      text-align: left;
+      img { 
+        width: 22px;
+        margin-bottom: 5px;
+      }
+      span {
+        font-size: 20px;
+      }
+    }
+    > h3 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    > p {
+      float: right;
+      margin: 0;
+      font-size: 13px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      tr {
+        td {
+          height: 40px;
+        }
+      }
+    }
+  }
+  .print {
+    background-color: #19335f;
+    font-family: 微软雅黑;
+    float: right;
+    color: #fff;
+    padding: 8px 9px;
+    margin-right: 11.2%;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+div.historyLog {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  table {
+    tbody {
+      tr {
+        td {
+          width: 64px;
+          font-family: FangSong;
+        }
+        &:nth-child(1) {
+          td {
+            height: 32px;
+          }
+        }
+      }
+    }
+    th {
+      font-family: FangSong;
+      font-family: 微软雅黑;
+      font-size: 21px;
+      font-weight: bold;
+      text-align: center;
+      height: 37px;
+    }
+  }
+  .print {
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+}
+
+div.analyze {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .detail {
+    table {
+      th {
+        font-family: FangSong;
+        font-family: 微软雅黑;
+        font-size: 21px;
+        font-weight: bold;
+        text-align: center;
+        height: 37px; 
+      }
+      tbody {
+        tr {
+          height: 32px;
+          &:first-child {
+            height: 50px;
+          }
+          td {
+            font-weight: bold;
+            height: 32px;
+          }
+        }
+      }
+    }
+  }
+  .print {
+    margin-bottom: 20px;
+  }
+}

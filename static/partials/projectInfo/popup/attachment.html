@@ -1,0 +1,46 @@
+<div class="attachment">
+    <div class="top">
+        <div class="left">
+            <lable>选择分类</lable>
+            <select ng-model="searchItem.fileType" ng-options="item.FJLX for item in attachmentTypeSelect" ng-change="attachmentTypeList()">
+            </select>
+            <button ng-click="upload()" authox-resource="XMXX|XMXX_FJSC">上传</button>
+        </div>
+        <div class="closed" ng-click="close()"></div>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>材料名称</th>
+            <th>路径</th>
+            <th>详细信息</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in list">
+            <td>
+                <img ng-src="{{item.choose?'images/public/hasChoose.png':'images/public/notChoose.png'}}" ng-click="singleChoose(item)" style="cursor: pointer">
+            </td>
+            <td>{{$index+1}}</td>
+            <td>{{item.fjmc}}</td>
+            <td>{{item.path}}</td>
+            <td><a href="javascript:;" ng-click="viewFile(item)" authox-resource="XMXX|XMXX_FJYL">预览</a></td>
+            <td><a href="javascript:;" ng-click="downloadSingle(item)" authox-resource="XMXX|XMXX_FJXZ">下载</a></td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <div>
+            <img ng-src="{{all.choose?'images/public/hasChoose.png':'images/public/notChoose.png'}}" ng-click="allChoose()">
+            <span>全选</span>
+            <button ng-click="downloadMultiple()">批量下载</button>
+        </div>
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

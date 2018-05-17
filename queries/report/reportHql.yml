@@ -1,0 +1,23 @@
+---
+  grammer: HQL
+  queries:
+    - name: reportquery2
+      resultType: Htxx
+      statement: 
+        "
+          select
+            a
+          from
+            Htxx a
+          where
+           1=1
+           #if($cq)
+             and a.tdxx.xzqh.id=:cq
+           #end
+           #if($start)
+              and a.htrq>=:start  and a.htrq<=:end
+           #end
+        "
+
+
+        

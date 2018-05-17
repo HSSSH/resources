@@ -1,0 +1,76 @@
+<div class="projectInfo" ng-controller='historyCtrl'>
+    <div class="current">
+        <div class="currentParams">
+            <div style="width: 300px">
+                <label for="">单位名称</label>
+                <input type="text" ng-model="searchItem.dwmc" class="inputTextLarge" />
+            </div>
+            <div style="width: 300px">
+                <label for="">合同编号</label>
+                <input type="text"  ng-model="searchItem.htbh" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">不动产权证号</label>
+                <input type="text" ng-model="searchItem.tdzh" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">城区</label>
+                <select class="selectLarge" ng-model="searchItem.sscq" ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd" ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect"></select>
+                <input type="text" class="inputTextWithSelect" ng-model="searchItem.mph" />
+            </div>
+            <div style="width: 300px">
+                <label for="">合同签订日期</label>
+                <input type="text" ng-model="searchItem.zxhtrq" class="inputTextSmall "/>-
+                <input type="text" ng-model="searchItem.zdhtrq" class="inputTextWithSelect noMargin"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">合同到期日期</label>
+                <input type="text" ng-model="searchItem.zxhtjsrq" zhcs-date-picker date-fmt="yyyy-MM-dd" ng-change="myDateFormat(searchItem,'zxhtjsrq')" class="inputTextSmall "/>-
+                <input type="text" ng-model="searchItem.zdhtjsrq" zhcs-date-picker date-fmt="yyyy-MM-dd" min-date="searchItem.zxhtjsrq" ng-change="myDateFormat(searchItem,'zdhtjsrq')" class="inputTextWithSelect noMargin"/>
+            </div>
+        </div>
+        <button class="btn btn-blue" ng-click="remindList()">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>单位名称</th>
+            <th>合同编号</th>
+            <th>不动产权证号</th>
+            <th>土地坐落</th>
+            <th>合同签订日期</th>
+            <th>合同到期日期</th>
+            <th>详细信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in list">
+            <td>{{$index+1}}</td>
+            <td>{{item.tdxx.dwmc}}</td>
+            <td>{{item.htbh}}</td>
+            <td>{{item.tdxx.tdzh}}</td>
+            <td>{{item.tdxx.jdxx.jdmc}}{{item.tdxx.mph}}</td>
+            <td>{{item.htrq}}</td>
+            <td>{{item.htjsrq}}</td>
+            <td>
+                <a href="javascript:;" ng-click="openModal('contract',item)">合同</a>
+                <a href="javascript:;" ng-click="openModal('approvalDetail',item.tdxx)">审批表</a>
+                <a href="javascript:;" ng-click="openModal('attachment',item)">附件</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="historyList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

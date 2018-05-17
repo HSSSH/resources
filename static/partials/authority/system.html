@@ -1,0 +1,21 @@
+<div ng-controller="sysCtrl">
+    <div class="leftMenu">
+        <div ui-sref="system.user" ui-sref-active="active">
+            <i class="userImg"></i>
+            <span>用户管理</span>
+        </div>
+        <div ui-sref="system.group" ui-sref-active="active">
+            <i class="groupImg"></i>
+            <span>群组管理</span>
+        </div>
+        <div ui-sref="system.role" ui-sref-active="active">
+            <i class="roleImg"></i>
+            <span>角色管理</span>
+        </div>
+        <div ui-sref="system.role2" ui-sref-active="active">
+            <i class="roleImg"></i>
+            <span>角色2管理</span>
+        </div>
+    </div>
+    <div ui-view='hint@' class="rightContent"></div>
+</div>

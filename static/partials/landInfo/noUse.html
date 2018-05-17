@@ -1,0 +1,84 @@
+<div ng-controller="landInfoNoUsedController">
+    <div class="query">
+        <div class="queryParams">
+            <div style="width: 300px">
+                <label>单位名称</label>
+                <input ng-model="searchItem.dwmc" type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">不动产权证号</label>
+                <input ng-model="searchItem.tdzh" type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">城区</label>
+                <select class="selectLarge" ng-model="searchItem.sscq"
+                        ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()">
+                </select>
+            </div>
+            <div style="width: 300px">
+                <label>土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd"
+                        ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect">
+                </select>
+                <input ng-model="searchItem.mph" type="text" class="inputTextWithSelect"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">土地等级</label>
+                <select ng-model="searchItem.tddj" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct"
+                        class="selectLarge">
+                </select>
+            </div>
+            <div style="width: 300px">
+                <label for="">批准用途</label>
+                <select class="selectLarge" ng-model="searchItem.pzyt"
+                        ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect"></select>
+            </div>
+        </div>
+        <button ng-click="currentList()" class="btn btn-blue">检索</button>
+    </div>
+    <div class="addLandButton">
+        <button ui-sref="landInfo.noUse.add" class="btn">
+            新增
+        </button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>地块号</th>
+            <th>单位名称</th>
+            <th>土地证号</th>
+            <th>土地等级</th>
+            <th>土地坐落</th>
+            <th>详细信息</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in queryData track by $index">
+            <td>{{$index + 1}}</td>
+            <td>{{item.dkh}}</td>
+            <td>{{item.dwmc}}</td>
+            <td>{{item.tdzh}}</td>
+            <td>{{item.tddj.tddj}}</td>
+            <td>{{item.xzqh.cq}}{{item.jdxx.jdmc}}{{item.mph}}</td>
+            <td>
+                <a ui-sref="landInfo.noUse.add({number:item.objectId})" authox-resource="TDXX | TDXX_CXTDXQ">土地信息</a>
+                <a href="#" ng-click="openModal('inform',item)">办理通知</a>
+            </td>
+            <td>
+                <a href="#" ng-click="openModal('approval', item,'add')">录入项目</a>
+                <a ng-if="item.zybs == 0" ui-sref="landInfo.noUse.add({number:item.objectId, update:true})">修改</a>
+                <a ng-if="item.zybs == 2" href="javascript:void(0)" style="color: grey" ng-click="updateModule.projectExistError()">修改</a>
+                <a href="#" ng-click="delete(item)" authox-resource="TDXX|TDXX_SCTD">删除</a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="landInfo" ng-controller="notPayController">
+    <div class="query">
+        <div class="queryParams">
+            <div style="width: 300px">
+                <label >单位名称</label>
+                <input type="text" class="inputTextLarge" ng-model="searchItem.dwmc"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">合同编号</label>
+                <input type="text" class="inputTextLarge" ng-model="searchItem.htbh"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">城区</label>
+                <select class="selectLarge" ng-model="searchItem.sscq" ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()"></select>
+            </div>
+            <div style="width: 300px">
+                <label>土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd" ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect"></select>
+                <input type="text" class="inputTextWithSelect" ng-model="searchItem.mph" />
+            </div>
+            <div style="width: 300px">
+                <label for="">缴款情况</label>
+                <select class="selectLarge" ng-model="searchItem.jkbs" ng-options="item.OBJECTID as item.JKBS for item in payTypeSelect"></select>
+            </div>
+        </div>
+        <button class="btn btn-blue" ng-click="currentList()">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>单位名称</th>
+            <th>合同编号</th>
+            <th>土地坐落</th>
+            <th>缴款情况</th>
+            <th>应缴总额(元)</th>
+            <th>实缴总额(元)</th>
+            <th>欠费天数</th>
+            <th>详细信息</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in noPayList">
+            <td>{{$index+1}}</td>
+            <td>{{item.tdxx.dwmc}}</td>
+            <td>{{item.htbh}}</td>
+            <td>{{item.tdxx.xzqh.cq}}{{item.tdxx.jdxx.jdmc}}{{item.tdxx.mph}}</td>
+            <td>{{item.jfqk}}</td>
+            <td>{{item.hjyjje}}</td>
+            <td>{{item.sjze}}</td>
+            <td>{{item.htnx}}</td>
+            <td>
+                <a href="javascript:;" ng-click="openModal('contract',item)">合同</a>
+                <a href="javascript:;" ng-click="openModal('pressMoneyNotice',item)">缴款通知</a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

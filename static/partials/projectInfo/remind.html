@@ -1,0 +1,95 @@
+<div class="projectInfo" ng-controller='remindCtrl'>
+    <div class="current">
+        <div class="currentParams">
+            <div style="width: 300px">
+                <label for="">单位名称</label>
+                <input type="text" ng-model="searchItem.dwmc" class="inputTextLarge" />
+            </div>
+            <div style="width: 300px">
+                <label for="">合同编号</label>
+                <input type="text"  ng-model="searchItem.htbh" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">城区</label>
+                <select class="selectLarge" ng-model="searchItem.sscq" ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd" ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect"></select>
+                <input type="text" class="inputTextWithSelect" ng-model="searchItem.mph" />
+            </div>
+            <div style="width: 300px">
+                <label for="">土地等级</label>
+                <select class="selectLarge" ng-model="searchItem.tddj" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">批准用途</label>
+                <select class="selectLarge" ng-model="searchItem.pzyt" ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">使用现状</label>
+                <select class="selectLarge" ng-model="searchItem.syxz" ng-options="item.OBJECTID as item.PZYT for item in useStatusSelect"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">应缴总额</label>
+                <input type="text" ng-model="searchItem.zxyjje" class="inputTextSmall "/>-
+                <input type="text" ng-model="searchItem.zdyjje" class="inputTextWithSelect noMargin"/>
+             </div>
+            <div style="width: 300px">
+                <label for="">合计应缴总额</label>
+                <input type="text" ng-model="searchItem.zxyjje" class="inputTextSmall "/>-
+                <input type="text" ng-model="searchItem.zdyjje" class="inputTextWithSelect noMargin"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">合同到期情况</label>
+                <select class="selectLarge" ng-model="searchItem.htdqqk" ng-options="item.OBJECTID as item.HTDQQK for item in contractExpirationSelect"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">合同到期日期</label>
+                <input type="text" ng-model="searchItem.zxhtjsrq" zhcs-date-picker date-fmt="yyyy-MM-dd" ng-change="myDateFormat(searchItem,'zxhtjsrq')" class="inputTextSmall "/>-
+                <input type="text" ng-model="searchItem.zdhtjsrq" zhcs-date-picker date-fmt="yyyy-MM-dd" min-date="searchItem.zxhtjsrq" ng-change="myDateFormat(searchItem,'zdhtjsrq')" class="inputTextWithSelect noMargin"/>
+            </div>
+        </div>
+        <button class="btn btn-blue" ng-click="remindList()">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>单位名称</th>
+            <th>合同编号</th>
+            <th>土地坐落</th>
+            <th>合同到期日期</th>
+            <th>项目提醒</th>
+            <th>详细信息</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in list">
+            <td>{{$index+1}}</td>
+            <td>{{item.tdxx.dwmc}}</td>
+            <td>{{item.htbh}}</td>
+            <td>{{item.tdxx.xzqh.cq}}{{item.tdxx.jdxx.jdmc}}{{item.tdxx.mph }}</td>
+            <td>{{item.htjsrq}}</td>
+            <td>{{item.htdqqk}}</td>
+            <td><a href="javascript:;" ui-sref="projectInfo.remind.add({number:item.tdxx.objectId})" authox-resource="TDXX | TDXX_CXTDXQ">土地信息</a>
+                <a href="javascript:;" ng-click="openModal('contract',item)">合同</a>
+                <a href="javascript:;" ng-click="openModal('keepNotice',item)">续办通知</a>
+            </td>
+            <td>
+                <a href="javascript:;" ui-sref="projectInfo.remind.add({number:item.tdxx.objectId,update:true})">续办</a>
+                <a href="javascript:;" ng-click="notKeep(item)">不续办</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="remindList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

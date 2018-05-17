@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-laber="Close" ng-click="cancel()">
+        <span class="fa fa-times-circle" aria-hidden="true"></span>
+    </button>
+    <h4 class="modal-title">{{op}}</h4>
+</div>
+<div class="modal-body">
+    <form name="user" class="form-horizontal" autocomplete="off">
+    	<div class="form-group has-feedback">
+            <label class="col-md-4 control-label"><span class="required">*</span>账号：</label>
+            <div class="col-md-6 " 
+            	ng-class="{'has-error' : user.account.$invalid && !user.account.$pristine,'has-success' : user.account.$valid}">
+                <input type="text" name="account"
+                check-url="rest/authox/users" check-property="account" check-model="{{checkModel}}" 
+                ng-model-options="{updateOn:'default blur',debounce:{default:600,blur:0}}"
+                ng-model="select.account" placeholder="请输入账号" required samecheck/>
+                <span class="fa fa-check form-control-feedback" ng-show="user.account.$valid"></span>
+                <span class="fa fa-remove form-control-feedback" ng-show="user.account.$invalid && !user.account.$pristine"></span>
+                <span ng-show="user.account.$error.samecheck" class="error-feedback">账号重复</span>
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-md-4 control-label"><span class="required">*</span>用户名：</label>
+            <div class="col-md-6"
+            	ng-class="{'has-error' : user.name.$invalid && user.name.$dirty,'has-success' : user.name.$valid}">
+                <input type="text" name="name" ng-model="select.displayName" placeholder="请输入用户名" required/>
+                <span class="fa fa-check form-control-feedback" ng-show="user.name.$valid"></span>
+                <span class="fa fa-remove form-control-feedback" ng-show="user.name.$invalid && user.name.$dirty"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">备注：</label>
+            <div class="col-md-6">
+                <input type="text" ng-model="select.description" placeholder="请输入备注" />
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-if="!showSel">
+            <label class="col-md-4 control-label"><span class="required">*</span>密码：</label>
+            <div class="col-md-6"
+            	ng-class="{'has-error' : user.pwd.$invalid && user.pwd.$dirty,'has-success' : user.pwd.$valid}">
+                <input type="text" name="pwd" ng-model="select.password" required/>
+                <span class="fa fa-check form-control-feedback" ng-show="user.pwd.$valid"></span>
+                <span class="fa fa-remove form-control-feedback" ng-show="user.pwd.$invalid && user.pwd.$dirty"></span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="form-group" style="margin-bottom: 2px;">
+        <button class="btn-submit" ng-click="commit()" ng-disabled="!user.$valid"><span class="fa fa-check">&nbsp提交</span></button>
+        <button class="btn-cancel" ng-click="cancel()"><span class="fa fa-close">&nbsp取消</span></button>
+    </div>
+</div>

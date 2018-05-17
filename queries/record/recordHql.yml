@@ -1,0 +1,84 @@
+---
+  grammer: HQL
+  queries:
+    - name: tdxxDeleteRecord
+      resultType: Tdxx
+      statement:
+        "
+         select
+           a
+         from
+           Tdxx a
+         where
+          a.zybs = '3'
+         #if($getdwmc)
+         and a.dwmc like :getdwmc
+         #end
+         #if($gettdzh)
+         and a.tdzh like :gettdzh
+         #end
+         #if($getsscq)
+         and a.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.mph like :getmph
+         #end
+         #if($gettddj)
+         and a.tddj.id = :gettddj
+         #end
+         #if($getpzyt)
+         and a.pzyt.id = :getpzyt
+         #end
+         #if($startTime)
+         and a.deleteTime > :startTime
+         #end
+         #if($endTime)
+         and a.deleteTime <= :endTime
+         #end
+         order by a.deleteTime desc,a.dkh desc
+        "
+    - name: htxxDeleteRecord
+      resultType: Htxx
+      statement:
+        "
+         select
+           a
+         from
+           Htxx a
+         where
+          a.sclc = '已删除'
+         #if($getdwmc)
+         and a.tdxx.dwmc like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.htbh like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.tdxx.tdzh like :gethtbh
+         #end
+         #if($getsscq)
+         and a.tdxx.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.tdxx.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.tdxx.mph like :getmph
+         #end
+         #if($gettddj)
+         and a.tdxx.tddj.id = :gettddj
+         #end
+         #if($getpzyt)
+         and a.tdxx.pzyt.id = :getpzyt
+         #end
+         #if($startTime)
+         and a.deletetime > :startTime
+         #end
+         #if($endTime)
+         and a.deletetime <= :endTime
+         #end
+         order by a.deletetime desc,a.htbh desc
+        "

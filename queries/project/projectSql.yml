@@ -1,0 +1,19 @@
+---
+  grammer: SQL
+  queries:
+    - name: htbhquery
+      resultType: Map
+      statement:
+        "
+         select
+           OBJECTID,HTBH
+         from
+           HTXX
+         where
+           1 = 1
+         #if($gethtbh)
+         and HTBH like :gethtbh
+         #end
+         and (SCLC is null or SCLC<>'已删除')
+         ORDER BY OBJECTID DESC
+        "

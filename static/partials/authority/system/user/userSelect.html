@@ -1,0 +1,120 @@
+<div style="width:100%;height:100%;position:relative">
+    <div class="editUser moveLeft" ng-controller="userSelectCtrl">
+        <button type="button" class="btn-search" ui-sref="system.user">返回</button>
+        <div class="content" style="position:relative">
+        	<div cgs-slim options="slimOptions">
+	            <div class="panelA">
+	                <div class="panel-title">
+	                    <div class="menu-lev-left">用户详情</div>
+	                    <i class="fa menu-lev-icon" ng-class="{true:'fa-angle-down',false:'fa-angle-up'}[isCollapsed]" ng-click="isCollapsed=!isCollapsed"></i>
+	                    <div authox-resource="authox | manage" class="menu-lev-right" ng-click="user.addUser('编辑用户', user.select.info)">编辑基本信息</div>
+	                </div>
+	                <div uib-collapse="isCollapsed" class="panel-table">
+	               		<div class="panel-scroll panel-user">
+		                    <table class="table_user">
+		                    	<colgroup>
+		                                <col style="width:33.3%" />
+		                                <col style="width:33.3%;" />
+		                                <col style="width:33.3%" />
+		                        </colgroup>
+		                        <tbody>
+		                            <tr>
+		                                <td><span>账号&nbsp</span>{{user.select.info.account}}</td>
+		                                <td><span>用户名&nbsp</span>{{user.select.info.displayName}}</td>
+		                                <td authox-resource="authox | manage">
+		                                	<a class="text-link" ng-click="user.resetKey()">重置密码</a>
+		                                	<i uib-popover="重置密码为123456" popover-trigger="mouseenter" class="fa fa-info-circle text-link"></i>
+		                                </td>
+		                            </tr>
+		                            <tr>  
+		                                <td><span>备注&nbsp</span>{{user.select.info.description}}</td>
+		                                <td colspan="2"><span>创建时间&nbsp</span>{{user.select.info.createtime|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+		                            </tr>
+		                        </tbody>
+		                    </table>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panelA">
+	                <div class="panel-title">
+	                    <div class="menu-lev-left">用户角色</div>
+	                    <i class="fa menu-lev-icon" ng-class="{true:'fa-angle-down',false:'fa-angle-up'}[isCollapsedF]" ng-click="isCollapsedF=!isCollapsedF"></i>
+	                    <div authox-resource="authox | manage" class="menu-lev-right" ng-click="user.editUserRole('编辑用户角色',user.select)">编辑用户角色</div>
+	                </div>
+	                <div uib-collapse="isCollapsedF" class="panel-table">
+	                	<div class="panel-scroll panel-user">
+		                    <table>
+		                        <thead>
+		                            <tr>
+		                                <th>角色标识</th>
+		                                <th>角色名称</th>
+		                                <th>备注</th>
+		                                <th>创建时间</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr ng-repeat="roles in user.select.roles track by $index">
+		                                <td><a class="text-link" ui-sref="system.role2.select({key:roles.role})" title="查看角色权限">{{roles.role}}</a></td>
+		                                <td>{{roles.name}}</td>
+		                                <!--             <td><span ng-repeat="parent in roles.parents">{{parent}};</span></td> -->
+		                                <td>{{roles.des}}</td>
+		                                <td>{{roles.createtimestamp|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+		                                <!--                                 <td style="width:200px"><a class="table_a border_right" ng-click="">查看权限</a><a class="table_a" ng-click="">解除授权</a></td> -->
+		                            </tr>
+		                        </tbody>
+		                    </table>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panelA">
+	                <div class="panel-title">
+	                    <div class="menu-lev-left">用户加入的组</div>
+	                    <i class="fa menu-lev-icon" ng-class="{true:'fa-angle-down',false:'fa-angle-up'}[isCollapsedS]" ng-click="isCollapsedS=!isCollapsedS"></i>
+	                </div>
+	                <div uib-collapse="isCollapsedS" class="panel-table">
+	                	<div class="panel-scroll panel-user">
+		                    <table>
+		                        <thead>
+		                            <tr>
+		                                <th>组名</th>
+		                                <th>备注</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr ng-repeat="groups in user.select.groups track by $index">
+		                                <td><a class="text-link" ui-sref="system.group.select({key:groups.groupTag})" title="查看组详情">{{groups.displayName}}</a></td>
+		                                <td>{{groups.des}}</td>
+		                            </tr>
+		                        </tbody>
+		                    </table>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="panelA">
+	                <div class="panel-title">
+	                    <div class="menu-lev-left">操作日志</div>
+	                    <i class="fa menu-lev-icon" ng-class="{true:'fa-angle-down',false:'fa-angle-up'}[isCollapsedT]" ng-click="isCollapsedT=!isCollapsedT"></i>
+	                </div>
+	                <div uib-collapse="isCollapsedT">
+	                	<div class="panel-scroll panel-user">
+		                    <table class="table table-bordered">
+		                        <thead>
+		                            <tr>
+		                                <th>操作记录</th>
+		                                <th>操作时间</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr>
+		<!--                                 <td>{{select.group}}</td>
+		                                <td>{{select.remark}}</td> -->
+		                            </tr>
+		                        </tbody>
+		                    </table>
+		               </div>
+	                </div>
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>

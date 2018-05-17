@@ -1,0 +1,52 @@
+/*列表页码*/
+suc-table .pagination {
+    float: right;
+    margin: 0 15px 15px 0; 
+}
+suc-table .pagination > li > a {/*列表页码分隔开*/
+    margin-left: 3px;
+}
+suc-table .pagination>.active>a, suc-table .pagination>.active>span,suc-table  .pagination>.active>a:hover, suc-table .pagination>.active>span:hover, suc-table .pagination>.active>a:focus,suc-table .pagination>.active>span:focus {
+    background-color:rgba(47,102,221,1) !important;
+    border-color:rgba(47,102,221,1) !important;
+}
+/*列表页码圆角*/
+suc-table .pagination > li:first-child > a {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+suc-table .pagination > li:last-child > a {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+suc-table .pagination > li > a {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+suc-table .tabel_container{
+	background: white;
+    border: solid 1px #eee;
+    border-radius: 0.2em;
+}
+suc-table .table_content>thead>tr>th{
+    font-size:14px;
+    color: #333;
+}
+suc-table .table_content>thead>tr>th{
+    border-bottom:solid 1px #eeeeee;
+}
+suc-table .table_content>tbody>tr{
+    border-bottom:solid 1px #eeeeee;
+    color: #333;
+    height: 45px; 
+}
+suc-table .table_content>tbody>tr:hover{
+    background:#fdecac;
+}
+suc-table .table_bottom{
+    overflow: hidden;
+}
+suc-table .table_bottom button{
+    margin-left: 10px;
+}

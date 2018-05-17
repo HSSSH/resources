@@ -1,0 +1,83 @@
+<div ng-controller="landInfoUsedController">
+    <div class="query">
+        <div class="queryParams">
+            <div style="width: 300px">
+                <label>单位名称</label>
+                <input ng-model="searchItem.dwmc" type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">不动产权证号</label>
+                <input ng-model="searchItem.tdzh" type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">城区</label>
+                <select class="selectLarge" ng-model="searchItem.sscq"
+                        ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()">
+                </select>
+            </div>
+            <div style="width: 300px">
+                <label>土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd"
+                        ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect">
+                </select>
+                <input ng-model="searchItem.mph" type="text" class="inputTextWithSelect"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">土地等级</label>
+                <select ng-model="searchItem.tddj" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct"
+                        class="selectLarge">
+                </select>
+            </div>
+            <div style="width: 300px">
+                <label for="">批准用途</label>
+                <select class="selectLarge" ng-model="searchItem.pzyt"
+                        ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect"></select>
+            </div>
+            <div style="width: 300px">
+                <label>征收时间</label>
+                <input zhcs-date-picker date-fmt="yyyy-MM-dd" placeholder="开始时间" ng-model="searchItem.startTime" ng-change="myDateFormat(searchItem,'startTime')" type="text" class="siblingTextInput"/>
+                <span>--</span>
+                <input zhcs-date-picker date-fmt="yyyy-MM-dd" placeholder="结束时间" min-date="searchItem.startTime" ng-model="searchItem.endTime" ng-change="myDateFormat(searchItem,'endTime')" type="text" class="siblingTextInput"/>
+            </div>
+        </div>
+        <button ng-click="currentList()" class="btn btn-blue">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>地块号</th>
+            <th>单位名称</th>
+            <th>土地证号</th>
+            <th>土地等级</th>
+            <th>土地坐落</th>
+            <th>征收时间</th>
+            <th>详细信息</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in queryData track by $index">
+            <td>{{$index + 1}}</td>
+            <td>{{item.tdxx.dkh}}</td>
+            <td>{{item.tdxx.dwmc}}</td>
+            <td>{{item.tdxx.tdzh}}</td>
+            <td>{{item.tdxx.tddj.tddj}}</td>
+            <td>{{item.tdxx.xzqh.cq}}{{item.tdxx.jdxx.jdmc}}{{item.tdxx.mph}}</td>
+            <td>{{item.htrq}}</td>
+            <td>
+               
+                <a ui-sref="landInfo.used.add({number:item.tdxx.objectId})" authox-resource="TDXX | TDXX_CXTDXQ">土地信息</a>
+                
+                <a ng-click="openModal('approvalDetail',item.tdxx)">审批表</a>
+                <a ng-click="openModal('contract',item.tdxx)">合同</a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

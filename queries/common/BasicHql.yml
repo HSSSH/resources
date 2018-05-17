@@ -1,0 +1,21 @@
+---
+  grammer: HQL
+  queries:
+    - name: NdjInfo
+      resultType: Nzj
+      statement: 
+        "
+        select 
+           a
+         from 
+           Nzj a
+        "
+    - name: QtcsInfo
+      resultType: Qtcs
+      statement: 
+        "select 
+           a
+         from 
+          Qtcs a
+         "
+

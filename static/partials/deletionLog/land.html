@@ -1,0 +1,70 @@
+<div class="landInfo" ng-controller="landDeleteController">
+    <div class="query">
+        <div class="queryParams">
+            <div style="width: 300px">
+                <label >单位名称</label>
+                <input type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">不动产权证号</label>
+                <input type="text" class="inputTextLarge"/>
+            </div>
+            <div style="width: 300px">
+                <label for="">土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd" ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect"></select>
+                <input type="text" class="inputTextWithSelect" ng-model="searchItem.mph" />
+            </div>
+            <div style="width: 300px">
+                <label for="">土地等级</label>
+                <select class="selectLarge" ng-model="searchItem.tddj" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">批准用途</label>
+                <select class="selectLarge" ng-model="searchItem.pzyt" ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect"></select>
+            </div>
+            <div style="width: 300px">
+                <label for="">删除日期</label>
+                <input style="margin-left: 0" type="text" class="inputTextWithSelect" ng-model="searchItem.startTime" zhcs-date-picker date-fmt="yyyy-MM-dd" ng-change="myDateFormat(searchItem,'startTime')"/>
+                <span style="float: left;margin: 0 4px">~</span>
+                <input style="margin-left: 0" type="text" class="inputTextWithSelect" ng-model="searchItem.endTime" zhcs-date-picker date-fmt="yyyy-MM-dd" min-date="searchItem.startTime" ng-change="myDateFormat(searchItem,'endTime')"/>
+            </div>
+        </div>
+        <button class="btn btn-blue" ng-click="currentList()">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>地块号</th>
+            <th>单位名称</th>
+            <th>不动产权证号</th>
+            <th>土地等级</th>
+            <th>土地坐落</th>
+            <th>删除日期</th>
+            <th>删除理由</th>
+            <th>详细信息</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in recordList">
+            <td>{{$index+1}}</td>
+            <td>{{item.dkh}}</td>
+            <td>{{item.dwmc}}</td>
+            <td>{{item.tdzh}}</td>
+            <td>{{item.tddj.tddj}}</td>
+            <td>{{item.xzqh.cq}}{{item.jdxx.jdmc}}{{item.mph}}</td>
+            <td>{{item.deleteTime}}</td>
+            <td>{{item.deleteReason}}</td>
+            <td>
+                <a ui-sref="deletionLog.land.add({number:item.objectId})" authox-resource="TDXX | TDXX_CXTDXQ">土地信息</a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

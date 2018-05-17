@@ -1,0 +1,148 @@
+<div class="addLand" ng-controller="addLandController">
+    <div class="myLabel">
+        <span ng-if="params.number">土地信息</span>
+        <span ng-if="!params.number">新增</span>
+    </div>
+    <div class="myContent">
+        <p class="header">地块号：{{params.dkh}}</p>
+        <table class="addLandTable">
+            <tr>
+                <td>单位名称</td>
+                <td><input ng-model="landDetail.dwmc" type="text" /></td>
+                <td class="not-required">不动产权证号（土地证号）</td>
+                <td><input ng-model="landDetail.tdzh" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td>联系人</td>
+                <td><input ng-model="landDetail.lxr" type="text" value=""/></td>
+                <td>联系电话</td>
+                <td><input ng-model="landDetail.lxdh" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td>土地等级</td>
+                <!--<td ng-if="!params.update && !params.add">-->
+                <!--<select disabled ng-model="landDetail.tddj.id" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct">-->
+                <!--</select>-->
+                <!--</td>-->
+                <!--<td ng-if="params.update || params.add">-->
+                <!--<select ng-model="landDetail.tddj" ng-options="item.TDDJ for item in landGradeSelct">-->
+                <!--</select>-->
+                <!--</td>-->
+                <td>
+                    <select ng-model="landDetail.tddj.id"
+                            ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct">
+                    </select>
+                </td>
+                <td>联系地址</td>
+                <td><input ng-model="landDetail.lxdz" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td>批准用途</td>
+                <!--<td ng-if="!params.update && !params.add">-->
+                <!--<select disabled ng-model="landDetail.pzyt.id" ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect">-->
+                <!--</select>-->
+                <!--</td>-->
+                <!--<td ng-if="params.update || params.add"><select ng-model="landDetail.pzyt" ng-options="item.PZYT for item in approveUseSelect">-->
+                <!--</select></td>-->
+                <td>
+                    <select ng-model="landDetail.pzyt.id"
+                            ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect">
+                    </select>
+                </td>
+                <td rowspan="3">坐落</td>
+                <td rowspan="3">
+                    <div style="padding: 10px 5px; border: 1px solid #eeeeee">
+                        <!--<select disabled ng-if="!params.update && !params.add" ng-model="landDetail.jdxx.xzqh.id" ng-options="item.OBJECTID as item.CQ for item in citySelect">-->
+                        <!--</select>-->
+                        <!--<select ng-if="params.update || params.add" ng-model="landDetail.jdxx.xzqh" ng-options="item.CQ for item in citySelect">-->
+                        <!--</select>-->
+                        <select ng-model="landDetail.jdxx.xzqh.id"
+                                ng-options="item.OBJECTID as item.CQ for item in citySelect" ng-change="areaSelected()">
+                        </select>
+                        <select ng-model="landDetail.jdxx.id "
+                                ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect">
+                        </select>
+                        <input class="not-required" ng-model="landDetail.mph" type="text" placeholder="门牌号（非必填）"/></div>
+                </td>
+            </tr>
+            <tr>
+                <td>现状用途</td>
+                <!--<td ng-if="!params.update && !params.add">-->
+                <!--<select disabled ng-model="landDetail.xzyt.id" ng-options="item.OBJECTID as item.PZYT for item in useStatusSelect">-->
+                <!--</select>-->
+                <!--</td>-->
+                <!--<td ng-if="params.update || params.add"><select ng-model="landDetail.xzyt" ng-options="item.PZYT for item in useStatusSelect" class="small">-->
+                <!--</select>-->
+                <td>
+                    <select ng-model="landDetail.xzyt.id"
+                            ng-options="item.OBJECTID as item.PZYT for item in useStatusSelect" class="small">
+                    </select>
+                    <input ng-model="landDetail.pzytqt" type="text" placeholder="其它用途" class="small not-required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>使用权类型</td>
+                <td>
+                    <select ng-model="landDetail.syqlx.id"
+                            ng-options="item.OBJECTID as item.SYQLX for item in usageTypeSelect">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>征收类型</td>
+                <!--<td ng-if="!params.update && !params.add">-->
+                <!--<select disabled ng-model="landDetail.zslx.id" ng-options="item.OBJECTID as item.ZSLX for item in collectionTypeSelect">-->
+                <!--</select>-->
+                <!--</td>-->
+                <!--<td ng-if="params.update || params.add">-->
+                <!--<select ng-model="landDetail.zslx" ng-options="item.ZSLX for item in collectionTypeSelect">-->
+                <!--</select>-->
+                <!--</td>-->
+                <td>
+                    <select ng-model="landDetail.zslx.id"
+                            ng-options="item.OBJECTID as item.ZSLX for item in collectionTypeSelect">
+                    </select>
+                </td>
+                <td class="not-required">容积率</td>
+                <!--<td ng-if="!params.update && !params.add"><input ng-model="landDetail.rjl" type="text"/></td>-->
+                <!--<td ng-if="params.update || params.add"><input ng-model="params.rjl" type="text"/></td>-->
+                <td><input disabled ng-model="params.rjl" type="text"/></td>
+            </tr>
+            <tr>
+                <td>建筑总面积（m<sup>2</sup>)</td>
+                <td>
+                    <input ng-change="computeRJL()" ng-model="landDetail.jzzmj" type="number" ng-keyup="validNumber($event)"/>
+                </td>
+                <td>计征建筑面积（m<sup>2</sup>)</td>
+                <!--<td ng-if="!params.update && !params.add"><input ng-model="landDetail.jzjzmj" type="text"/></td>-->
+                <!--<td ng-if="params.update || params.add"><input ng-change="computeJZArea('jianzhu')" ng-click="checkLandArea()" ng-model="params.jzjzmj" type="text"/></td>-->
+                <td>
+                    <input ng-model="params.jzjzmj" ng-change="computeJZArea('jianzhu')" ng-click="checkLandArea()" type="number" ng-keyup="validNumber($event)"/>
+                </td>
+            </tr>
+            <tr>
+                <td>土地总面积（m<sup>2</sup>)</td>
+                <td>
+                    <input ng-change="computeRJL()" ng-model="landDetail.tdzmj" type="number" ng-keyup="validNumber($event)"/>
+                </td>
+                <td>计征土地面积（m<sup>2</sup>)</td>
+                <!--<td ng-if="params.update || params.add"><input ng-change="computeJZArea('tudi')" ng-click="checkLandArea()" ng-model="params.jztdmj" type="text"/></td>-->
+                <!--<td ng-if="!params.update && !params.add"><input ng-model="landDetail.jztdmj" type="text"/></td>-->
+                <td>
+                    <input ng-model="params.jztdmj" ng-change="computeJZArea('tudi')" ng-click="checkLandArea()" type="number" ng-keyup="validNumber($event)"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="not-required">备注</td>
+                <td>
+                    <input ng-model="landDetail.bz"/>
+                </td>
+                <td class="not-required"></td>
+                <td style="text-align: right">
+                    <button ng-if="params.add || params.update" class="btn btn-blue" ng-click="save()" class="btn btn-blue" authox-resource="TDXX|TDXX_GXTD">保存</button>
+                    <button class="btn btn-blue" onclick="history.back()">返回</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

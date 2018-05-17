@@ -1,0 +1,487 @@
+<div class="monthTable analyze" ng-controller="analyzeCtrl">
+    <div class="condition">
+        <span>{{checkbox}}</span>
+        <span>开始日期</span>
+        <input
+            zhcs-date-picker
+            placeholder = "开始日期"
+            date-fmt    = "yyyy-MM-dd"
+            ng-model    = "historyLog.startTime">
+        <span>结束日期</span>
+        <input
+            zhcs-date-picker
+            placeholder = "结束日期"
+            date-fmt    = "yyyy-MM-dd"
+            ng-model    = "historyLog.endTime">
+        <button ng-click="analyzeSearch()">生成报表</button>
+    </div>
+    <div class="detail" id="analyze">
+        <table border="1">
+            <th colspan="8">杭州市<span ng-bind="historyLog.startTime | date:'yyyy'"></span>年<span ng-bind="historyLog.endTime | date:'MM'"></span>月土地年收益征收情况汇总表</th>
+            <tbody>
+                <tr>
+                    <td>行政区</td>
+                    <td>统计类型</td>
+                    <td>合同数</td>
+                    <td>计征面积</td>
+                    <td>合同金额</td>
+                    <td>实收金额</td>
+                    <td>含补缴金额</td>
+                    <td>备注</td>
+                </tr>
+                <tr ng-if="analyzeStatic['上城区']">
+                    <td rowspan="6">上城区</td>
+                    <td>{{analyzeStatic['上城区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['上城区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['上城区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['上城区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['上城区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['上城区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['上城区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['上城区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['上城区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['上城区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['下城区']">
+                    <td rowspan="6">下城区</td>
+                    <td>{{analyzeStatic['下城区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['下城区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['下城区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['下城区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['下城区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['下城区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['下城区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['下城区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['下城区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['下城区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['下城区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['下城区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['下城区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['下城区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['下城区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['下城区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['下城区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['下城区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['下城区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['下城区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['下城区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['下城区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['下城区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['下城区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['下城区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['下城区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['拱墅区']">
+                    <td rowspan="6">拱墅区</td>
+                    <td>{{analyzeStatic['拱墅区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['拱墅区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['拱墅区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['拱墅区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['拱墅区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['拱墅区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['拱墅区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['拱墅区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['拱墅区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['拱墅区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['拱墅区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['拱墅区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['拱墅区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['拱墅区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['拱墅区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['拱墅区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['拱墅区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['杭州经济技术开发区']">
+                    <td rowspan="6">杭州经济技术开发区</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['杭州经济技术开发区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['江干区']">
+                    <td rowspan="6">江干区</td>
+                    <td>{{analyzeStatic['江干区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['江干区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['江干区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['江干区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['江干区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['江干区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['江干区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['江干区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['江干区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['江干区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['江干区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['江干区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['江干区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['江干区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['江干区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['江干区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['江干区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['江干区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['江干区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['江干区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['江干区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['江干区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['江干区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['江干区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['江干区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['江干区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['滨江区']">
+                    <td rowspan="6">滨江区</td>
+                    <td>{{analyzeStatic['滨江区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['滨江区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['滨江区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['滨江区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['滨江区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['滨江区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['滨江区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['滨江区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['滨江区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['滨江区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['滨江区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['滨江区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['滨江区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['滨江区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['滨江区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['滨江区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['滨江区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['滨江区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['滨江区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['滨江区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['滨江区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['滨江区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['滨江区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['滨江区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['上城区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['上城区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['滨江区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['上城区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['上城区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['上城区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['上城区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['上城区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['滨江区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['西湖区']">
+                    <td rowspan="6">西湖区</td>
+                    <td>{{analyzeStatic['西湖区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['西湖区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['西湖风景名胜区']">
+                    <td rowspan="6">西湖风景名胜区</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].JZMJ}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].HJYJJE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].SJZE}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][4].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].ZSLX}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].HTSL}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['西湖风景名胜区'][5].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-if="analyzeStatic['总计']">
+                    <td rowspan="6">总计</td>
+                    <td>{{analyzeStatic['总计'][0].ZSLX}}</td>
+                    <td>{{analyzeStatic['总计'][0].HTSL}}</td>
+                    <td>{{analyzeStatic['总计'][0].JZMJ}}</td>
+                    <td>{{analyzeStatic['总计'][0].HJYJJE}}</td>
+                    <td>{{analyzeStatic['总计'][0].SJZE}}</td>
+                    <td>{{analyzeStatic['总计'][0].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{analyzeStatic['总计'][1].ZSLX}}</td>
+                    <td>{{analyzeStatic['总计'][1].HTSL}}</td>
+                    <td>{{analyzeStatic['总计'][1].JZMJ}}</td>
+                    <td>{{analyzeStatic['总计'][1].HJYJJE}}</td>
+                    <td>{{analyzeStatic['总计'][1].SJZE}}</td>
+                    <td>{{analyzeStatic['总计'][1].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['总计'][2].ZSLX}}</td>
+                    <td>{{analyzeStatic['总计'][2].HTSL}}</td>
+                    <td>{{analyzeStatic['总计'][2].JZMJ}}</td>
+                    <td>{{analyzeStatic['总计'][2].HJYJJE}}</td>
+                    <td>{{analyzeStatic['总计'][2].SJZE}}</td>
+                    <td>{{analyzeStatic['总计'][2].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['总计'][3].ZSLX}}</td>
+                    <td>{{analyzeStatic['总计'][3].HTSL}}</td>
+                    <td>{{analyzeStatic['总计'][3].JZMJ}}</td>
+                    <td>{{analyzeStatic['总计'][3].HJYJJE}}</td>
+                    <td>{{analyzeStatic['总计'][3].SJZE}}</td>
+                    <td>{{analyzeStatic['总计'][3].HBJJE}}</td>
+                    <td></td>
+                </tr>
+                    <td>{{analyzeStatic['总计'][4].ZSLX}}</td>
+                    <td>{{analyzeStatic['总计'][4].HTSL}}</td>
+                    <td>{{analyzeStatic['总计'][4].JZMJ | number: 2}}</td>
+                    <td>{{analyzeStatic['总计'][4].HJYJJE | number: 2}}</td>
+                    <td>{{analyzeStatic['总计'][4].SJZE | number: 2}}</td>
+                    <td>{{analyzeStatic['总计'][4].HBJJE | number: 2}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="print" ng-click="print()" title="请务必等待页面完全加载完再点击打印">打印当前报表</button>
+</div>

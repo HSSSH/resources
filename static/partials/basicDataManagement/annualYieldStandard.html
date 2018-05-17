@@ -1,0 +1,17 @@
+<div class="annualYieldStandard" ng-controller="annualYieldStandardCtrl">
+    <table>
+        <thead>
+            <tr>
+                <th><span class="use">土地用途</span><span class="grade">土地等级</span></th>
+                <th ng-repeat="item in level">{{item.tddj}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="smallList in listData">
+                <td>{{smallList[0].pzyt.pzyt}}</td>
+                <td ng-repeat="item in smallList"><input ng-model="item.value"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button ng-click="save()">保存</button>
+</div>

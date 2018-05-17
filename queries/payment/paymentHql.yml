@@ -1,0 +1,80 @@
+---
+  grammer: HQL
+  queries:
+    - name: queryalreadypay
+      resultType: Htxx
+      statement:
+        "select
+           a
+         from
+           Htxx a
+         where
+          a.jfqk = '已缴费'
+          and a.dqlc = '合同已签'
+         #if($getdwmc)
+         and a.tdxx.dwmc like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.htbh like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.tdxx.tdzh like :gethtbh
+         #end
+         #if($getsscq)
+         and a.tdxx.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.tdxx.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.tdxx.mph like :getmph
+         #end
+         order by a.jfrq desc,a.htbh desc
+         "
+    - name: queryunpay
+      resultType: Htxx
+      statement:
+        "select
+           a
+         from
+           Htxx a
+         where
+          a.jfqk = '未缴费'
+          and a.dqlc = '合同已签'
+         #if($getdwmc)
+         and a.tdxx.dwmc like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.htbh like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.tdxx.tdzh like :gethtbh
+         #end
+         #if($getsscq)
+         and a.tdxx.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.tdxx.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.tdxx.mph like :getmph
+         #end
+         order by a.htjsrq asc,a.htbh desc
+         "
+    - name: expirehtxx
+      resultType: Htxx
+      statement:
+        "select
+           a
+         from
+           Htxx a
+         where
+          a.dqlc in ('合同已签','合同已结束')
+         and
+          a.xbbj ='0'
+         #if($getsscq)
+         and a.tdxx.xzqh.id = :getsscq
+         #end
+         and
+           a.htjsrq <= :getzdhtjsrq
+         "

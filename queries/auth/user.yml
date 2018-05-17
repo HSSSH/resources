@@ -1,0 +1,64 @@
+---
+  grammer: SQL
+  queries:
+    - name: getUsersLike
+      resultType: Map
+      statement: 
+        "
+        select 
+           *
+         from 
+           AUTHOXUSER  
+         where 
+           1=1
+          #if($key)
+           and $key like :value
+          #end
+        "
+    - name: findUserByAccount
+      resultType: Map
+      statement: 
+        "select 
+           * 
+         from 
+           AUTHOXUSER  
+         where 
+           1=1
+          #if($id)
+           and AUTHOXUSER_ID != :id
+          #end
+           and account = :account"
+    - name: authoxgroupinfo
+      resultType: Map
+      statement:
+        "select
+           A.SUBJECTID,A.GROUPTAG,G.DISPLAYNAME,X.OBJECTID
+         from
+           authoxsubjecttag A
+         LEFT JOIN
+            authoxgroup G
+         on
+           A.GROUPTAG=G.GROUPTAG
+         LEFT JOIN
+           XZQH X
+         ON
+           G.DISPLAYNAME = X.CQ
+         WHERE
+           SUBJECTID = :account
+         "
+
+    - name: getqzuser
+      resultType: Map
+      statement:
+        "select
+           *
+         from
+            authoxuser
+         where
+           account not in
+          (select
+             subjectid
+           from
+             AUTHOXSUBJECTTAG
+          )
+         "

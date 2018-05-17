@@ -1,0 +1,28 @@
+---
+  grammer: SQL
+  queries:
+    - name: nzjquery
+      resultType: Map
+      statement: 
+        "
+        select 
+           value
+         from 
+           NZJ a
+         where
+          1=1
+         #if($yt)
+          and yt = :yt
+          and tddj = :tddj
+         #end
+        "
+    - name: tdidquery
+      resultType: Map
+      statement:
+        "
+         select
+           MAX(objectid) as id
+          from
+           tdxx
+         "
+

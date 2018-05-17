@@ -1,0 +1,116 @@
+<style>
+    div.query div.queryParams label {
+        width: 125px;
+    }
+    div.query div.queryParams input.inputTextWithSelect {
+        width: 90px;
+        margin-left: 0;
+        margin-right: 5px;
+    }
+</style>
+<div class="landInfo" ng-controller="leaderCheckWaitCtrl">
+    <div class="query">
+        <div class="queryParams">
+            <div style="width: 330px">
+                <label >单位名称</label>
+                <input type="text" class="inputTextLarge" ng-model="searchItem.dwmc"/>
+            </div>
+            <div style="width: 330px">
+                <label >合同编号</label>
+                <input type="text" class="inputTextLarge" ng-model="searchItem.htbh"/>
+            </div>
+            <div style="width: 330px">
+                <label for="">不动产权证号</label>
+                <input type="text" class="inputTextLarge" ng-model="searchItem.tdzh"/>
+            </div>
+            <div style="width: 330px">
+                <label>土地坐落</label>
+                <select class="selectSmall" ng-model="searchItem.jd" ng-options="item.OBJECTID as item.JDMC for item in landLocationSelect">
+                </select>
+                <input type="text" class="inputTextWithSelect" style="margin-left: 10px" ng-model="searchItem.mph"/>
+            </div>
+            <div style="width: 330px">
+                <label for="">土地等级</label>
+                <select name="" class="selectLarge" ng-model="searchItem.tddj" ng-options="item.OBJECTID as item.TDDJ for item in landGradeSelct">
+                </select>
+            </div>
+            <div style="width: 330px">
+                <label for="">批准用途</label>
+                <select name="" id="" class="selectLarge" ng-model="searchItem.pzyt" ng-options="item.OBJECTID as item.PZYT for item in approveUseSelect">
+                </select>
+            </div>
+            <div style="width: 330px">
+                <label for="">使用现状</label>
+                <select name="" class="selectLarge" ng-model="searchItem.syxz" ng-options="item.OBJECTID as item.PZYT for item in useStatusSelect">
+                </select>
+            </div>
+            <div style="width: 330px">
+                <label for="">应缴总额(元/年)</label>
+                <input type="number" class="inputTextWithSelect" ng-model="searchItem.zxyjje"/>
+                <span style="float: left">~</span>
+                <input type="number" class="inputTextWithSelect" style="margin-left: 4px" ng-model="searchItem.zdyjje"/>
+            </div>
+            <div style="width: 330px">
+                <label for="">合计应缴总额(元)</label>
+                <input type="number" class="inputTextWithSelect" ng-model="searchItem.zxhjyjje"/>
+                <span style="float: left">~</span>
+                <input type="number" class="inputTextWithSelect" style="margin-left: 4px" ng-model="searchItem.zdhjyjje"/>
+            </div>
+            <div style="width: 330px">
+                <label for="">提交日期</label>
+                <input type="text" class="inputTextWithSelect" ng-model="searchItem.zxtjrq" zhcs-date-picker date-fmt="yyyy-MM-dd" ng-change="myDateFormat(searchItem,'zxtjrq')"/>
+                <span style="float: left">~</span>
+                <input type="text" class="inputTextWithSelect" style="margin-left: 4px" ng-model="searchItem.zdtjrq" zhcs-date-picker date-fmt="yyyy-MM-dd" min-date="searchItem.zxtjrq" ng-change="myDateFormat(searchItem,'zdtjrq')"/>
+            </div>
+        </div>
+        <button class="btn btn-blue" ng-click="currentList()">检索</button>
+    </div>
+    <table class="default">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>单位名称</th>
+            <th>合同编号</th>
+            <th>土地坐落</th>
+            <th>土地等级</th>
+            <th>提交时间</th>
+            <th>详细信息</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in waitingContract">
+            <td style="cursor: pointer">
+                <img ng-src="{{item.choose?'images/public/hasChoose.png':'images/public/notChoose.png'}}" ng-click="singleChoose(item)">
+            </td>
+            <td>{{$index+1}}</td>
+            <td>{{item.tdxx.dwmc}}</td>
+            <td>{{item.htbh}}</td>
+            <td>{{item.tdxx.xzqh.cq}}{{item.tdxx.jdxx.jdmc}}{{item.tdxx.mph}}</td>
+            <td>{{item.tdxx.tddj.tddj}}</td>
+            <td>{{item.tjrq}}</td>
+            <td>
+                <a href="javascript:;" ng-click="openModal('approvalDetail',item.tdxx)">审批表</a>
+                <a href="javascript:;" ng-click="openModal('contract',item)">合同</a>
+            </td>
+            <td>
+                <a href="javascript:;" ng-click="passSingle(item,true)">通过</a>
+                <a href="javascript:;" ng-click="passSingle(item,false)">不通过</a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-page">
+        <div>
+            <img ng-src="{{all.choose?'images/public/hasChoose.png':'images/public/notChoose.png'}}" ng-click="allChoose()">
+            <span>全选</span>
+            <button ng-click="passMultiple(true)">批量审核通过</button>
+            <button ng-click="passMultiple(false)">批量审核不通过</button>
+        </div>
+        <span>共有{{page.totalCount}}条，每页显示：{{page.pageSize}}条</span>
+        <uib-pagination class="pagination" ng-model="page.pageNo" ng-change="currentList()"
+                        total-items="page.totalCount" items-per-page="page.pageSize"
+                        boundary-links="true" first-text="&laquo;" last-text="&raquo;" max-size="6"
+                        direction-links="true" previous-text="&lt;" next-text="&gt;" rotate="false">
+        </uib-pagination>
+    </div>
+</div>

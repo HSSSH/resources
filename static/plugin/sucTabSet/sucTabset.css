@@ -1,0 +1,79 @@
+.sucTabOuter{
+  width: 100%;
+  height: 100%;
+}
+.sucTabUl{
+    height: 35px;
+  line-height: 35px;
+    overflow: hidden;
+    padding: 0 35px;
+    border-bottom: 1px solid #ddd;
+  background-color: #e6e6e6;
+    position: relative;
+}
+.sucTabUl a{
+  display: inline-block;
+      float:  left;
+  padding:0 10px;
+  color: #333;
+  text-decoration: none;
+  height: 25px;
+    line-height: 25px;
+    margin-top: 5px;
+    border-right: 1px solid #bbbbbb;
+}
+ .sucTabUl a:hover {
+    background-color: #bbb;
+    cursor: pointer;
+} 
+.sucTabUl a.active {
+  background-color: #bbb;
+}
+.sucTabUl a > i {
+  background: url(./img/closeTab.png) no-repeat center center;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  margin-top: 5px;
+  float: right;
+}
+.sucTabUl a>i:HOVER {
+  background: url(./img/closeTab1.png) no-repeat;
+}
+.sucTabUl a > img{
+  width: 0px;
+  height: 0px;
+}
+.sucTabUl a > img[src] {
+  width: 15px;
+  height: 15px;
+}
+.sucTabUl abbr {
+    width: calc(100% - 20px);
+    height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    text-overflow: ellipsis;
+}
+abbr[title] {
+    border: 0;
+    text-decoration: none;
+}
+.sucTabCon{
+  height: calc(100% - 35px);
+  position: relative;
+}
+.sucTabCon > div {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.suc-tab-pane.ng-scope.ng-hide {
+  visibility: hidden;
+  display: block !important;
+}
+.suc-tab-min-width {
+  min-width: 140px;
+}

@@ -1,0 +1,111 @@
+<div class="monthTable" ng-controller="monthTableCtrl">
+    <div class="condition">
+        <span>年份</span>
+        <input
+            zhcs-date-picker
+            placeholder="年份"
+            date-fmt="yyyy"
+            ng-model="monthTab.year">
+        <span>月份</span>
+        <input
+            zhcs-date-picker
+            placeholder="月份"
+            date-fmt="MM"
+            ng-model="monthTab.month">
+        <span>城区</span>
+        <select 
+            style="width: 200px" 
+            ng-model="monthTab.cq"
+            ng-change="csq(monthTab.cq)" 
+            ng-options="cqItem.OBJECTID as cqItem.CQ for cqItem in cqItems">
+        </select>
+        <button ng-click="monthTabSearch()">生成报表</button>
+    </div>
+    <div class="detail" id="monthTab">
+        <div>
+            <img src="images/public/landLogo.png" />
+            <span>杭州市国土资源局</span>
+        </div>
+        <h3>
+            <span ng-bind="monthTab.year | date:'yyyy'"></span>年<span ng-bind="monthTab.month | date:'MM'"></span>月份杭州市<span>{{ cq }}</span>土地年收益统计报表
+        </h3>
+        <p>单位：份、平方米、元</p>
+        <table border="1">
+            <tr>
+                <td colspan="2">统计类别</td>
+                <td>合同数</td>
+                <td>计征面积</td>
+                <td>合同金额</td>
+                <td>实收金额</td>
+                <td>欠缴金额</td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="width: 144px">划拨土地年收益</td>
+                <td>本月</td>
+                <td>{{ monthStatic[1].SL }}</td>
+                <td>{{ monthStatic[1].JZMJ }}</td>
+                <td>{{ monthStatic[1].JE }}</td>
+                <td>{{ monthStatic[1].SJJE }}</td>
+                <td>{{ monthStatic[1].CHAE }}</td>
+            </tr>
+            <tr>
+                <td>本年</td>
+                <td>{{ monthStatic[0].SL }}</td>
+                <td>{{ monthStatic[0].JZMJ }}</td>
+                <td>{{ monthStatic[0].JE }}</td>
+                <td>{{ monthStatic[0].SJJE }}</td>
+                <td>{{ monthStatic[0].CHAE }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2">出让土地临时改变用途收益差价</td>
+                <td>本月</td>
+                <td>{{ monthStatic[3].SL }}</td>
+                <td>{{ monthStatic[3].JZMJ }}</td>
+                <td>{{ monthStatic[3].JE }}</td>
+                <td>{{ monthStatic[3].SJJE }}</td>
+                <td>{{ monthStatic[3].CHAE }}</td>
+            </tr>
+            <tr>
+                <td>本年</td>
+                <td>{{ monthStatic[2].SL }}</td>
+                <td>{{ monthStatic[2].JZMJ }}</td>
+                <td>{{ monthStatic[2].JE }}</td>
+                <td>{{ monthStatic[2].SJJE }}</td>
+                <td>{{ monthStatic[2].CHAE }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">合计</td>
+                <td>{{ monthSum[0].allcount | number: 2 }}</td>
+                <td>{{ monthSum[0].alljzmj | number: 2 }}</td>
+                <td>{{ monthSum[0].allje | number: 2 }}</td>
+                <td>{{ monthSum[0].allsjje | number: 2 }}</td>
+                <td>{{ monthSum[0].allchae | number: 2 }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">备注</td>
+                <td colspan="5"></td>
+            </tr>
+            <tr>
+                <td colspan="7" style="text-align: left;">
+                    <p style="margin: 0">说明：</p>
+                    <p style="margin: 0">1、计征面积指实际征收年收益、收益差价的面积；</p>
+                    <p style="margin: 0">2、合同年合同金额指一年合同的征收金额，两年一次性缴清的，则合同年合同金额为两年合计；</p>
+                    <p style="margin: 0">3、月份报表汇总至市局的时间为次月5日前。</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: left;margin-top: 5px;float: left">
+            <span style="margin-left: 10px">填表人:</span>
+            <span style="margin-left: 60px">负责人:</span>
+            <span style="margin-left: 60px">
+            填表单位(盖章):
+            <label style="font-size: 20px">杭州市上城区国土资源局</label>
+        </span>
+            <span>填表时间:
+            <label style="font-size: 20px"><span ng-bind="time | date:'yyyy'"></span>-<span ng-bind="time | date:'MM'"></span>-<span ng-bind="time | date:'dd'"></span></label>
+        </span>
+            <span>联系电话:</span>
+        </p>
+    </div>
+    <button class="print" ng-click="print()" title="请务必等待页面完全加载完再点击打印">打印当前报表</button>
+</div>

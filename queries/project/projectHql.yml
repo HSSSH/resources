@@ -1,0 +1,188 @@
+---
+  grammer: HQL
+  queries:
+    - name: Htxxquery
+      resultType: Htxx
+      statement:
+        "
+        select
+           a
+         from
+           Htxx a
+         where
+          1 = 1
+         #if($getdwmc)
+         and a.tdxx.dwmc like :getdwmc
+         #end
+         #if($gethtbh)
+         and a.htbh like :gethtbh
+         #end
+         #if($getsscq)
+         and a.tdxx.xzqh.id = :getsscq
+         #end
+         #if($getjd)
+         and a.tdxx.jdxx.id = :getjd
+         #end
+         #if($getmph)
+         and a.tdxx.mph like :getmph
+         #end
+         #if($gettddj)
+         and a.tdxx.tddj.id = :gettddj
+         #end
+         #if($getpzyt)
+         and a.tdxx.pzyt.id = :getpzyt
+         #end
+         #if($getsyxz)
+         and a.tdxx.xzyt.id = :getsyxz
+         #end
+         #if($gettdzh)
+         and a.tdxx.tdzh = :gettdzh
+         #end
+         #if($getzxyjje)
+         and a.tdxx.nyjje > :getzxyjje
+         #end
+         #if($getzdyjje)
+         and a.tdxx.nyjje <= :getzdyjje
+         #end
+         #if($gezxthjyjje)
+         and a.hjyjje > :gezxthjyjje
+         #end
+         #if($getzdhjyjje)
+         and a.hjyjje <= :gezdthjyjje
+         #end
+         #if($getzxlrrq)
+         and a.lrrq > :getzxlrrq
+         #end
+         #if($getzdlrrq)
+         and a.lrrq <= :getzdlrrq
+         #end
+         #if($gethtjsrq)
+         and a.htjsrq > :gethtjsrq
+         #end
+         #if($getzxhtjsrq)
+         and a.htjsrq > :getzxhtjsrq
+         #end
+         #if($getzdhtjsrq)
+         and a.htjsrq <= :getzdhtjsrq
+         #end
+         #if($getzxhtrq)
+         and a.htrq > :getzxhtrq
+         #end
+         #if($getzdhtrq)
+         and a.htrq <= :getzdhtrq
+         #end
+         #if($getzxtjrq)
+         and a.tjrq > :getzxtjrq
+         #end
+         #if($getzdtjrq)
+         and a.tjrq <= :getzdtjrq
+         #end
+         #if($getdqlc)
+         and a.dqlc = :getdqlc
+         #end
+         #if($getsclc)
+         and a.sclc = :getsclc
+         #end
+         #if($gethtbz)
+         and a.htbz = :gethtbz
+         #end
+         #if($getxbbj)
+         and a.xbbj = :getxbbj
+         #end
+         #if($currentproject)
+         and a.dqlc <> '合同已结束'
+         and (a.sclc is null or a.sclc <>'已删除')
+         order by a.htbh desc
+         #end
+         #if($expireproject)
+         and a.dqlc in ('合同已签','合同已结束')
+         order by a.htjsrq asc, a.htbh desc
+         #end
+         #if($querydelete)
+         and a.sclc in ('科室负责人审核','分局领导审核','经办人确认')
+         order by a.htbh desc
+         #end
+         #if($confirmation)
+         and a.dqlc in ('科室负责人审核','分局领导审核','合同待签')
+         order by a.htbh desc
+         #end
+         #if($history)
+         order by a.htbh desc
+         #end
+         #if($tobeaudit)
+         order by a.tjrq desc,a.htbh desc
+         #end
+         #if($ksauditpass)
+         order by a.kzyjrq desc,a.htbh desc
+         #end
+         #if($ksauditnot)
+         order by a.kshtrq desc,a.htbh desc
+         #end
+         #if($fjauditpass)
+         order by a.jldyjrq desc,a.htbh desc
+         #end
+         #if($fjauditnot)
+         order by a.fjhtrq desc,a.htbh desc
+         #end
+         #if($tobedelete)
+         order by a.deletetime desc,a.htbh desc
+         #end
+        "
+    - name: queryfj
+      resultType: Fj
+      statement:
+        "
+        select
+           a
+         from
+           Fj a
+         where
+          1 = 1
+         #if($htxxid)
+         and a.htxx.id = :htxxid
+         #end
+         #if($fjlxid)
+         and a.fjlx.id = :fjlxid
+         #end
+         "
+    - name: updatedqlc
+      resultType: Htxx
+      statement:
+        "
+        select
+           a
+         from
+           Htxx a
+         where
+           to_char(a.htjsrq,'yyyy-MM-dd') = :htjsrq
+         and
+           a.dqlc = '合同已签'
+         "
+    - name: updatexbbj
+      resultType: Htxx
+      statement:
+        "
+        select
+           a
+         from
+           Htxx a
+         where
+           a.dqlc = '合同已结束'
+         and
+           a.xbbj = '0'
+         and
+           a.htjsrq <= :htjsrq
+         "
+    - name: updatecslc
+      resultType: Htxx
+      statement:
+        "
+        select
+           a
+         from
+           Htxx a
+         where
+           a.sclc = '经办人确认'
+         and
+           a.deletetime <= :deletetime
+         "
